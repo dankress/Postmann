@@ -4,7 +4,7 @@ import{
     findPackagestations,
     addPackagestation,
     newPackagestationValidators
-}from "./packagestationsController.js";
+}from "./packagestationsControllers.js";
 
 const router = express.Router();
 
