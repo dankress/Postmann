@@ -1,0 +1,29 @@
+{
+  "name": "postmann",
+  "version": "1.0.0",
+  "description": "Simple example API for dockerized MongoDB",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dankress/Postmann.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dankress/Postmann/issues"
+  },
+  "homepage": "https://github.com/dankress/Postmann#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
