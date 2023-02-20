@@ -4,8 +4,8 @@ const users = [
     {
         id: 0,
         postnumber: 123215543243,
-        name: "Nicolas",
-        lastName: "Schwarzbarth",
+        firstName: "Nicolas",
+        name: "Schwarzbarth",
         street: "Erzbergerstraße 121",
         city: "Karlsruhe",
         zip: 76133,
@@ -28,13 +28,13 @@ export const addUser = (req, res) => {
     }
     let user = req.user;
     user.push(user);
-    res.status(201).send('Added ${user.name} ${user.lastName} to the User database');
+    res.status(201).send('Added ${user.firstName} ${user.name} to the User database');
 };
 
 export const newUserValidators =[
     check("postnumber").notEmpty().withMessage("postnumber is required"),
+    check("firstName").notEmpty().withMessage("firstName is required"),
     check("name").notEmpty().withMessage("name is required"),
-    check("lastName").notEmpty().withMessage("lastName is required"),
     check("street").notEmpty().withMessage("street is required"),
     check("city").notEmpty().withMessage("city is required"),
     check("zip").notEmpty().withMessage("zip is required"),
