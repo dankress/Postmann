@@ -1,32 +1,39 @@
 import { check, validationResult } from "express-validator";
+import { Packagestation } from "../models/packagestation.js";
 
-const packagestations = [
-    {
-        id: 0,
-        number:2432,
-        street: "Erzbergerstraße 121",
-        city: "Karlsruhe",
-        zip: 76133,
-        country: "Germany",
-        status: "available",
-    }
-]
-export const getPackagestations = (req, res) => {
+export const getPackagestations = async (req, res) => {
+    const packagestations = await Packagestation.find();
     res.status(200).send(packagestations);
-}
+};
 
-export const findPackagestations = (req, res) => {
-    let packagestations = packagestations.filter((packagestations) => packagestations.number == req.query.number);
-    res.status(200).send(packagestations);
-}
-export const addPackagestation = (req, res) => {
+export const findPackagestationsByNumber = async (req, res) => {
+    let result = await Packagestation.find({number: req.query.number});
+    res.status(200).send(result);
+};
+
+export const getPackagestationsById = async (req, res) => {
+    let packagestation = await Packagestation.findById(req.params.id)
+    res.status(200).send(packagestation);
+};
+
+
+
+export const addPackagestation = async (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    let packagestation = req.packagestation;
-    packagestation.push(packagestation);
-    res.status(201).send('Added ${packagestation.nuber} to the Packagestation database');
+    const packagestation = new Packagestation({
+        id: req.body.id,
+        number: req.body.number,
+        street: req.body.street,
+        city: req.body.city,
+        zip: req.body.zip,
+        country: req.body.country,
+        status: req.body.status,
+    });
+
+    packagestation.save(packagestation).then((todo) => res.status(201).send(todo));
 };
 
 export const newPackagestationValidators =[

@@ -1,34 +1,39 @@
 import { check, validationResult } from "express-validator";
+import { Shipment } from "../models/shipments.js";
 
-const shipments = [
-    {
-        id: 0,
-        trackingNumber: "123456789",
-        street: "Erzbergerstraße 121",
-        city: "Karlsruhe",
-        zip: 76133,
-        country: "Germany",
-        status: "in transit",
-        weight:"1.5kg",
-    }
-]
-export const getShipments = (req, res) => {
+
+export const getShipments = async (req, res) => {
+    const shipments = await Shipment.find();
     res.status(200).send(shipments);
 }
 
-export const findShipments = (req, res) => {
-    let shipments = shipments.filter((shipments) => shipments.trackingNumber == req.query.trackingNumber);
+export const getShipmentsByTrackingNumber = async (req, res) => {
+    let shipments = await Shipment.find({trackingNumber: req.query.trackingNumber});
     res.status(200).send(shipments);
 }
-export const addShipment = (req, res) => {
+
+export const getShipmentsById = async (req, res) => {
+    let result = await Shipment.findById(req.params.id)
+    res.status(200).send(result);
+}
+export const addShipment = async (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    let shipment = req.shipment;
-    shipments.push(shipment);
-    res.status(201).send('Added ${shipment.trackingNumber} to the Shipping database');
+    const shipment = new Shipment({
+        id: req.body.id,
+        trackingNumber: req.body.trackingNumber,
+        street: req.body.street,
+        city: req.body.city,
+        zip: req.body.zip,
+        country: req.body.country,
+        status: req.body.status,
+        weight: req.body.weight,
+    });
+    user.save(shipment).then((todo) => res.status(201).send(todo));
 };
+
 
 export const newShipmentValidators =[
     check("trackingNumber").notEmpty().withMessage("trackingNumber is required"),
@@ -37,4 +42,4 @@ export const newShipmentValidators =[
     check("zip").notEmpty().withMessage("zip is required"),
     check("country").notEmpty().withMessage("country is required"),
     check("status").notEmpty().withMessage("status is required"),
-]
+];

@@ -1,34 +1,37 @@
 import { check, validationResult } from "express-validator";
+import { User } from "../models/users.js";
 
-const users = [
-    {
-        id: 0,
-        postnumber: 123215543243,
-        firstName: "Nicolas",
-        name: "Schwarzbarth",
-        street: "Erzbergerstraße 121",
-        city: "Karlsruhe",
-        zip: 76133,
-        country: "Germany",
-        status: "member",
-    }
-]
-export const getUsers = (req, res) => {
+export const getUsers = async (req, res) => {
+    const users = await User.find();
     res.status(200).send(users);
 }
 
-export const findUsers = (req, res) => {
-    let users = users.filter((users) => users.number == req.query.number);
+export const getUsersByPostnumber = async (req, res) => {
+    let users = await User.find({postnumber: req.query.postnumber});
     res.status(200).send(users);
 }
-export const addUser = (req, res) => {
+export const getUsersById = async (req, res) => {
+    let result = await User.findById(req.params.id);
+    req.status(200).send(result);
+}
+export const addUser = async (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    let user = req.user;
-    user.push(user);
-    res.status(201).send('Added ${user.firstName} ${user.name} to the User database');
+    const user = new User({
+        id: req.body.id,
+        postnumber: req.body.postnumber,
+        firstName: req.body.firstName,
+        name: req.body.name,
+        street: req.body.street,
+        city: req.body.city,
+        zip: req.body.zip,
+        country: req.body.country,
+        status: req.body.status,
+    });
+
+    user.save(user).then((todo) => res.status(201).send(todo));
 };
 
 export const newUserValidators =[

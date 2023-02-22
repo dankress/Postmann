@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import router from "./routes/shipmentsRoutes.js";
 import router2 from "./routes/packagestationsRoutes.js";
 import router3 from "./routes/usersRoutes.js";
+import mongoose from "mongoose";
 
 
 const app = express();
@@ -14,7 +15,9 @@ app.use("/packagestations", router2);
 app.use("/users", router3);
 
 
-
+mongoose.connect("mongodb://mongo:27017/test").then(() => {
+  console.log("Database connected");
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
