@@ -4,7 +4,7 @@ import{
     findShipments,
     addShipment,
     newShipmentValidators
-}from "./shipmentsControllers.js";
+}from "../controllers/shipmentsControllers.js";
 
 const router = express.Router();
 

@@ -1,8 +1,8 @@
 import express from "express";
 import bodyParser from "body-parser";
-import router from "./shipmentsRoutes.js";
-import router2 from "./packagestationsRoutes.js";
-import router3 from "./usersRoutes.js";
+import router from "./routes/shipmentsRoutes.js";
+import router2 from "./routes/packagestationsRoutes.js";
+import router3 from "./routes/usersRoutes.js";
 
 
 const app = express();

@@ -4,7 +4,7 @@ import{
     findUsers,
     addUser,
     newUserValidators
-}from "./usersControllers.js";
+}from "../controllers/usersControllers.js";
 
 const router = express.Router();
 
