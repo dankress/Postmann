@@ -1,7 +1,8 @@
 import express from "express";
 import{
     getShipments,
-    findShipments,
+    getShipmentsByTrackingNumber,
+    getShipmentsById,
     addShipment,
     newShipmentValidators
 }from "../controllers/shipmentsControllers.js";
@@ -9,7 +10,8 @@ import{
 const router = express.Router();
 
 router.get("/", getShipments);
-router.get("/search", findShipments);
+router.get("/searchId", getShipmentsByTrackingNumber);
+router.get("/:id", getShipmentsById);
 router.post("/", newShipmentValidators, addShipment);
 
 export default router;

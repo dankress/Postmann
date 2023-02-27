@@ -14,6 +14,7 @@ app.use("/shipments", router);
 app.use("/packagestations", router2);
 app.use("/users", router3);
 
+app.all("*", (req, res) => res.sendStatus(404));
 
 mongoose.connect("mongodb://mongo:27017/test").then(() => {
   console.log("Database connected");
@@ -22,4 +23,5 @@ mongoose.connect("mongodb://mongo:27017/test").then(() => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
 

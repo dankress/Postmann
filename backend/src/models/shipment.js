@@ -1,14 +1,13 @@
 import mongoose from "mongoose";
 
 const shipmentSchema = new mongoose.Schema({
-  id: Int,
-  trackingNumber: Int,
+  trackingNumber: int,
   street: String,
   city: String,
-  zip: Int,
+  zip: int,
   country: String,
   status: String,
   weight: String,
 });
 
-export const shipment = mongoose.model("Shipment", shipmentSchema);
+export const Shipment = mongoose.model("Shipment", shipmentSchema);

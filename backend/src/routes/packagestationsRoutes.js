@@ -1,7 +1,8 @@
 import express from "express";
 import{
     getPackagestations,
-    findPackagestations,
+    findPackagestationsByNumber,
+    getPackagestationsById,
     addPackagestation,
     newPackagestationValidators
 }from "../controllers/packagestationsControllers.js";
@@ -9,7 +10,8 @@ import{
 const router = express.Router();
 
 router.get("/", getPackagestations);
-router.get("/search", findPackagestations);
+router.get("/:id", getPackagestationsById);
+router.get("/search", findPackagestationsByNumber);
 router.post("/", newPackagestationValidators, addPackagestation);
 
 export default router;

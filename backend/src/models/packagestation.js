@@ -1,13 +1,12 @@
 import mongoose from "mongoose";
 
 const packagestationSchema = new mongoose.Schema({
-  id: Int,
-  number: Int,
+  number: int,
   street: String,
   city: String,
-  zip: Int,
+  zip: int,
   country: String,
   status: String,
 });
 
-export const packagestation = mongoose.model("Packagestation", packagestationSchema);
+export const Packagestation = mongoose.model("Packagestation", packagestationSchema);

@@ -1,5 +1,5 @@
 import { check, validationResult } from "express-validator";
-import { Shipment } from "../models/shipments.js";
+import { Shipment } from "../models/shipment.js";
 
 
 export const getShipments = async (req, res) => {
@@ -22,7 +22,6 @@ export const addShipment = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
     const shipment = new Shipment({
-        id: req.body.id,
         trackingNumber: req.body.trackingNumber,
         street: req.body.street,
         city: req.body.city,
