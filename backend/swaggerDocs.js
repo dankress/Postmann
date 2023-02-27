@@ -101,6 +101,31 @@ const swaggerDocs={
                     },
                 },
             },
-    	}
-    }
-}
+    	},
+    },
+    definitions: {
+        Packagestations: {
+            required: ["number", "street","city,","zip","country","status"],
+            properties: {
+                number: {
+                    type: "Number",
+                },
+                street: {
+                    type: "string",
+                },
+                city: {
+                    type: "string",
+                },
+                zip: {
+                    type: "Number",
+                },
+                country: {
+                    type: "String",
+                },
+                status: {
+                    type: "String",
+                },
+            },
+        },
+    },
+};
