@@ -20,13 +20,13 @@ const swaggerDocs={
     paths: {
         "/packagestations": {
           get: {
-            tags: ["Packagesations"],
+            tags: ["Packagestations"],
             summary: "Get all packagestations in the system",
             responses: {
                 200: {
                     description: "OK",
                     schema: {
-                        $ref: "#/definitions/Package",
+                        $ref: "#/definitions/Packagestation",
                         },
                     },
                 },
@@ -128,4 +128,239 @@ const swaggerDocs={
             },
         },
     },
+
+    paths: {
+        "/shipments": {
+          get: {
+            tags: ["Shipments"],
+            summary: "Get all shipments in the system",
+            responses: {
+                200: {
+                    description: "OK",
+                    schema: {
+                        $ref: "#/definitions/Shipment",
+                        },
+                    },
+                },
+            },
+            post: {
+                tags: ["Shipments"],
+                summary: "Add a new shipments",
+                parameters: [
+                    {
+                        name: "shipment",
+                        in: "body",
+                        description: "Shipment to be added",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                ],
+                responses: {
+                    201: {
+                        description: "Created",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                },
+            },
+            "/{id}": {
+                get: {
+                    tags: ["Shipments"],
+                    summary: "Get a specific shipments by id",
+                    parameters: [
+                        {
+                            name: "id",
+                            in: "body",
+                            description: "Id of the shipments searched for",
+                            schema: {
+                            $ref: "#/definitions/Shipment",
+                            },
+                        },
+                    ],
+                    responses: {
+                        200: {
+                            description: "OK",
+                            schema: {
+                            $ref: "#/definitions/Package",
+                            },
+                        },
+                    },
+                },
+            },
+            "/search": {
+                get: {
+                    tags: ["Shipments"],
+                    summary: "Get a specific shipment by title",
+                    parameters: [
+                        {
+                            name: "title",
+                            in: "path",
+                            description: "Title of the shipment searched for",
+                            schema: {
+                            $ref: "#/definitions/Shipment",
+                            },
+                        },
+                    ],
+                    responses: {
+                        200: {
+                            description: "OK",
+                            schema: {
+                                $ref: "#/definitions/Shipment",
+                            },
+                        },
+                    },
+                },
+            },
+    	},
+    },
+    definitions: {
+        Shipments: {
+            required: ["trackingnumber", "street","city,","zip","country","status"],
+            properties: {
+                trackingnumber: {
+                    type: "Number",
+                },
+                street: {
+                    type: "String",
+                },
+                city: {
+                    type: "String",
+                },
+                zip: {
+                    type: "Number",
+                },
+                country: {
+                    type: "String",
+                },
+                status: {
+                    type: "String",
+                },
+                weight: {
+                    type: "String"
+                },
+            },
+        },
+    },
+
+    paths: {
+        "/users": {
+          get: {
+            tags: ["Users"],
+            summary: "Get all users in the system",
+            responses: {
+                200: {
+                    description: "OK",
+                    schema: {
+                        $ref: "#/definitions/User",
+                        },
+                    },
+                },
+            },
+            post: {
+                tags: ["Users"],
+                summary: "Add a new users",
+                parameters: [
+                    {
+                        name: "user",
+                        in: "body",
+                        description: "User to be added",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                ],
+                responses: {
+                    201: {
+                        description: "Created",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                },
+            },
+            "/{id}": {
+                get: {
+                    tags: ["Users"],
+                    summary: "Get a specific users by id",
+                    parameters: [
+                        {
+                            name: "id",
+                            in: "body",
+                            description: "Id of the users searched for",
+                            schema: {
+                            $ref: "#/definitions/User",
+                            },
+                        },
+                    ],
+                    responses: {
+                        200: {
+                            description: "OK",
+                            schema: {
+                            $ref: "#/definitions/Package",
+                            },
+                        },
+                    },
+                },
+            },
+            "/search": {
+                get: {
+                    tags: ["Users"],
+                    summary: "Get a specific user by title",
+                    parameters: [
+                        {
+                            name: "title",
+                            in: "path",
+                            description: "Title of the user searched for",
+                            schema: {
+                            $ref: "#/definitions/User",
+                            },
+                        },
+                    ],
+                    responses: {
+                        200: {
+                            description: "OK",
+                            schema: {
+                                $ref: "#/definitions/User",
+                            },
+                        },
+                    },
+                },
+            },
+    	},
+    },
+    definitions: {
+        Users: {
+            required: ["trackingnumber", "street","city,","zip","country","status"],
+            properties: {
+                postnumber: {
+                    type: "Number",
+                },
+                firstname: {
+                    type: "String",
+                },
+                name: {
+                    type: "String",
+                },
+                street: {
+                    type: "String",
+                },
+                city: {
+                    type: "String",
+                },
+                zip: {
+                    type: "Number",
+                },
+                country: {
+                    type: "String",
+                },
+                status: {
+                    type: "String",
+                },
+            },
+        },
+    },
 };
+
+export default swaggerDocs;
