@@ -10,7 +10,7 @@ import{
 const router = express.Router();
 
 router.get("/", getUsers);
-router.get("/searchById", getUsersById);
+router.get("/:id", getUsersById);
 router.get("/searchByPostnumber", getUsersByPostnumber);
 router.post("/", newUserValidators, addUser);
 
