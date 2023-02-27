@@ -4,7 +4,9 @@ import router from "./routes/shipmentsRoutes.js";
 import router2 from "./routes/packagestationsRoutes.js";
 import router3 from "./routes/usersRoutes.js";
 import mongoose from "mongoose";
+
 import swaggerDocs from "../swaggerDocs.js";
+import swaggerUi from "swagger-ui-express";
 
 const app = express();
 const port = 4000;
