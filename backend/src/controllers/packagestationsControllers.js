@@ -24,7 +24,6 @@ export const addPackagestation = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
     const packagestation = new Packagestation({
-        id: req.body.id,
         number: req.body.number,
         street: req.body.street,
         city: req.body.city,

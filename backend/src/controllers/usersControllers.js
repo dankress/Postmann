@@ -20,7 +20,6 @@ export const addUser = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
     const user = new User({
-        id: req.body.id,
         postnumber: req.body.postnumber,
         firstName: req.body.firstName,
         name: req.body.name,
