@@ -129,3 +129,5 @@ const swaggerDocs={
         },
     },
 };
+
+export default swaggerDocs;

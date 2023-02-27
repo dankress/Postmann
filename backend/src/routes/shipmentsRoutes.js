@@ -10,7 +10,7 @@ import{
 const router = express.Router();
 
 router.get("/", getShipments);
-router.get("/searchId", getShipmentsByTrackingNumber);
+router.get("/searchbyTrackingNumber", getShipmentsByTrackingNumber);
 router.get("/:id", getShipmentsById);
 router.post("/", newShipmentValidators, addShipment);
 
