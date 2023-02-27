@@ -48,7 +48,7 @@ const swaggerDocs={
                     201: {
                         description: "Created",
                         schema: {
-                            $ref: "#/definitions/Package",
+                            $ref: "#/definitions/Packagestation",
                         },
                     },
                 },
