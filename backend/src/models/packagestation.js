@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
 const packagestationSchema = new mongoose.Schema({
-  number: int,
+  number: Number,
   street: String,
   city: String,
-  zip: int,
+  zip: Number,
   country: String,
   status: String,
 });

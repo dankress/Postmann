@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    postnumber: int,
+    postnumber: Number,
     firstName: String,
     name: String,
     street: String,
     city: String,
-    zip: int,
+    zip: Number,
     country: String,
     status: String,
 });
