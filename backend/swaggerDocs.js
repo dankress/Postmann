@@ -55,12 +55,12 @@ const swaggerDocs={
             },
             delete: {
                 tags: ["Packagestations"],
-                summary: "Add a new packagestations",
+                summary: "Deletes a Packagestation with certain ID",
                 parameters: [
                     {
                         name: "packagestation",
                         in: "body",
-                        description: "Packagestation to be added",
+                        description: "PackagestationID to be deleted",
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },
@@ -159,6 +159,28 @@ const swaggerDocs={
                     },
                 },
             },
+            delete: {
+                tags: ["Shipments"],
+                summary: "Deletes a Shipment with certain ID",
+                parameters: [
+                    {
+                        name: "shipment",
+                        in: "body",
+                        description: "ShipmentID to be deleted",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                ],
+                responses: {
+                    200: {
+                        description: "Deleted",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                },
+            },
             "/{id}": {
                 get: {
                     tags: ["Shipments"],
@@ -237,6 +259,28 @@ const swaggerDocs={
                 responses: {
                     201: {
                         description: "Created",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                },
+            },
+            delete: {
+                tags: ["Users"],
+                summary: "Deletes a User with certain ID",
+                parameters: [
+                    {
+                        name: "user",
+                        in: "body",
+                        description: "UserID to be deleted",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                ],
+                responses: {
+                    200: {
+                        description: "Deleted",
                         schema: {
                             $ref: "#/definitions/User",
                         },
