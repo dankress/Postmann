@@ -4,7 +4,8 @@ import{
     getShipmentsByTrackingNumber,
     getShipmentsById,
     addShipment,
-    newShipmentValidators
+    newShipmentValidators,
+    deleteShipmentsById
 }from "../controllers/shipmentsControllers.js";
 
 const router = express.Router();
@@ -13,5 +14,6 @@ router.get("/", getShipments);
 router.get("/searchbyTrackingNumber", getShipmentsByTrackingNumber);
 router.get("/:id", getShipmentsById);
 router.post("/", newShipmentValidators, addShipment);
+router.post("/:id",deleteShipmentsById);
 
 export default router;

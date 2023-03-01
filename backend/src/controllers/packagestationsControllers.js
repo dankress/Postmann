@@ -16,6 +16,11 @@ export const getPackagestationsById = async (req, res) => {
     res.status(200).send(packagestation);
 };
 
+export const deletePackagestationsById = async (req, res) => {
+    await Packagestation.deleteOne({_id: req.params.id})
+    res.status(200).send("Done")
+};
+
 
 export const addPackagestation = async (req, res) => {
     const errors = validationResult(req);
