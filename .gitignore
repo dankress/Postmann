@@ -6,3 +6,16 @@ node_modules
 
 # db logs
 .db
+.db/WiredTiger.wt
+.db/WiredTiger.turtle
+.db/WiredTiger.lock
+.db/sizeStorer.wt
+.db/index-6--2867824317601905694.wt
+.db/index-5--2867824317601905694.wt
+.db/index-3--2867824317601905694.wt
+.db/index-1--2867824317601905694.wt
+.db/diagnostic.data/metrics.2023-02-22T09-27-53Z-00000
+.db/collection-4--2867824317601905694.wt
+.db/collection-2--2867824317601905694.wt
+.db/collection-0--2867824317601905694.wt
+.db/_mdb_catalog.wt

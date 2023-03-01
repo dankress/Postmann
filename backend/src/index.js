@@ -12,6 +12,7 @@ const app = express();
 const port = 4000;
 
 app.use(bodyParser.json());
+
 app.use("/shipments", router);
 app.use("/packagestations", router2);
 app.use("/users", router3);
@@ -19,12 +20,12 @@ app.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.all("*", (req, res) => res.sendStatus(404));
 
-mongoose.connect("mongodb://mongo:27017/test").then(() => {
+mongoose.connect("mongodb://mongo:27017/backend").then(() => {
   console.log("Database connected");
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on port http://localhost:${port}`);
 });
 
 

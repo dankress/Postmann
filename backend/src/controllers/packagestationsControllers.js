@@ -17,7 +17,6 @@ export const getPackagestationsById = async (req, res) => {
 };
 
 
-
 export const addPackagestation = async (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
