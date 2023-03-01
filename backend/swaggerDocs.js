@@ -419,7 +419,7 @@ const swaggerDocs={
             },
         },
         Shipment: {
-            required: ["trackingnumber", "street","city,","zip","country","status"],
+            required: ["trackingnumber", "street","city,","zip","country","status","weight"],
             properties: {
                 trackingnumber: {
                     type: "Number",
@@ -445,7 +445,7 @@ const swaggerDocs={
             },
         },
         User: {
-            required: ["trackingnumber", "street","city,","zip","country","status"],
+            required: ["postnumber", "firstname", "name", "street","city,","zip","country","status"],
             properties: {
                 postnumber: {
                     type: "Number",
