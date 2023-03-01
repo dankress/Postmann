@@ -102,34 +102,6 @@ const swaggerDocs={
                 },
             },
     	},
-    },
-    definitions: {
-        Packagestations: {
-            required: ["number", "street","city,","zip","country","status"],
-            properties: {
-                number: {
-                    type: "Number",
-                },
-                street: {
-                    type: "string",
-                },
-                city: {
-                    type: "string",
-                },
-                zip: {
-                    type: "Number",
-                },
-                country: {
-                    type: "String",
-                },
-                status: {
-                    type: "String",
-                },
-            },
-        },
-    },
-
-    paths: {
         "/shipments": {
           get: {
             tags: ["Shipments"],
@@ -214,37 +186,6 @@ const swaggerDocs={
                 },
             },
     	},
-    },
-    definitions: {
-        Shipments: {
-            required: ["trackingnumber", "street","city,","zip","country","status"],
-            properties: {
-                trackingnumber: {
-                    type: "Number",
-                },
-                street: {
-                    type: "String",
-                },
-                city: {
-                    type: "String",
-                },
-                zip: {
-                    type: "Number",
-                },
-                country: {
-                    type: "String",
-                },
-                status: {
-                    type: "String",
-                },
-                weight: {
-                    type: "String"
-                },
-            },
-        },
-    },
-
-    paths: {
         "/users": {
           get: {
             tags: ["Users"],
@@ -331,35 +272,85 @@ const swaggerDocs={
     	},
     },
     definitions: {
-        Users: {
+        Packagestation: {
+            required: ["number", "street","city,","zip","country","status"],
+            properties: {
+                number: {
+                    type: "Number",
+                },
+                street: {
+                    type: "string",
+                },
+                city: {
+                    type: "string",
+                },
+                zip: {
+                    type: "Number",
+                },
+                country: {
+                    type: "string",
+                },
+                status: {
+                    type: "string",
+                },
+            },
+        },
+        Shipment: {
+            required: ["trackingnumber", "street","city,","zip","country","status"],
+            properties: {
+                trackingnumber: {
+                    type: "Number",
+                },
+                street: {
+                    type: "string",
+                },
+                city: {
+                    type: "string",
+                },
+                zip: {
+                    type: "Number",
+                },
+                country: {
+                    type: "string",
+                },
+                status: {
+                    type: "string",
+                },
+                weight: {
+                    type: "string"
+                },
+            },
+        },
+        User: {
             required: ["trackingnumber", "street","city,","zip","country","status"],
             properties: {
                 postnumber: {
                     type: "Number",
                 },
                 firstname: {
-                    type: "String",
+                    type: "string",
                 },
                 name: {
-                    type: "String",
+                    type: "string",
                 },
                 street: {
-                    type: "String",
+                    type: "string",
                 },
                 city: {
-                    type: "String",
+                    type: "string",
                 },
                 zip: {
                     type: "Number",
                 },
                 country: {
-                    type: "String",
+                    type: "string",
                 },
                 status: {
-                    type: "String",
+                    type: "string",
                 },
             },
         },
+        
     },
 };
 
