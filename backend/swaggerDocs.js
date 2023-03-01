@@ -53,6 +53,28 @@ const swaggerDocs={
                     },
                 },
             },
+            delete: {
+                tags: ["Packagestations"],
+                summary: "Add a new packagestations",
+                parameters: [
+                    {
+                        name: "packagestation",
+                        in: "body",
+                        description: "Packagestation to be added",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                ],
+                responses: {
+                    200: {
+                        description: "Deleted",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                },
+            },
             "/{id}": {
                 get: {
                     tags: ["Packagestations"],
