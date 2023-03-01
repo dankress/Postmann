@@ -53,6 +53,47 @@ const swaggerDocs={
                     },
                 },
             },
+            delete: {
+                tags: ["Packagestations"],
+                summary: "Delete a Packagestation with certain ID",
+                parameters: [
+                    {
+                        name: "packagestation",
+                        in: "body",
+                        description: "PackagestationID to be deleted",
+                    },
+                ],
+                responses: {
+                    200: {
+                        description: "Deleted",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                },
+            },
+            patch: {
+                tags: ["Packagestations"],
+                summary: "Change a Packagestation with certain ID",
+                parameters: [
+                    {
+                        name: "packagestation",
+                        in: "body",
+                        description: "PackagestationID to be changed",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                ],
+                responses: {
+                    200: {
+                        description: "Patched",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                },
+            },
             "/{id}": {
                 get: {
                     tags: ["Packagestations"],
@@ -102,34 +143,6 @@ const swaggerDocs={
                 },
             },
     	},
-    },
-    definitions: {
-        Packagestations: {
-            required: ["number", "street","city,","zip","country","status"],
-            properties: {
-                number: {
-                    type: "Number",
-                },
-                street: {
-                    type: "string",
-                },
-                city: {
-                    type: "string",
-                },
-                zip: {
-                    type: "Number",
-                },
-                country: {
-                    type: "String",
-                },
-                status: {
-                    type: "String",
-                },
-            },
-        },
-    },
-
-    paths: {
         "/shipments": {
           get: {
             tags: ["Shipments"],
@@ -159,6 +172,47 @@ const swaggerDocs={
                 responses: {
                     201: {
                         description: "Created",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                },
+            },
+            delete: {
+                tags: ["Shipments"],
+                summary: "Delete a Shipment with certain ID",
+                parameters: [
+                    {
+                        name: "shipment",
+                        in: "body",
+                        description: "ShipmentID to be deleted",
+                    },
+                ],
+                responses: {
+                    200: {
+                        description: "Deleted",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                },
+            },
+            patch: {
+                tags: ["Shipments"],
+                summary: "Change a Shipment with certain ID",
+                parameters: [
+                    {
+                        name: "shipment",
+                        in: "body",
+                        description: "ShipmentID to be changed",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                ],
+                responses: {
+                    200: {
+                        description: "Patched",
                         schema: {
                             $ref: "#/definitions/Shipment",
                         },
@@ -214,37 +268,6 @@ const swaggerDocs={
                 },
             },
     	},
-    },
-    definitions: {
-        Shipments: {
-            required: ["trackingnumber", "street","city,","zip","country","status"],
-            properties: {
-                trackingnumber: {
-                    type: "Number",
-                },
-                street: {
-                    type: "String",
-                },
-                city: {
-                    type: "String",
-                },
-                zip: {
-                    type: "Number",
-                },
-                country: {
-                    type: "String",
-                },
-                status: {
-                    type: "String",
-                },
-                weight: {
-                    type: "String"
-                },
-            },
-        },
-    },
-
-    paths: {
         "/users": {
           get: {
             tags: ["Users"],
@@ -274,6 +297,47 @@ const swaggerDocs={
                 responses: {
                     201: {
                         description: "Created",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                },
+            },
+            delete: {
+                tags: ["Users"],
+                summary: "Delete a User with certain ID",
+                parameters: [
+                    {
+                        name: "user",
+                        in: "body",
+                        description: "UserID to be deleted",
+                    },
+                ],
+                responses: {
+                    200: {
+                        description: "Deleted",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                },
+            },
+            patch: {
+                tags: ["Users"],
+                summary: "Change a User with certain ID",
+                parameters: [
+                    {
+                        name: "user",
+                        in: "body",
+                        description: "UserID to be changed",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                ],
+                responses: {
+                    200: {
+                        description: "Patched",
                         schema: {
                             $ref: "#/definitions/User",
                         },
@@ -331,35 +395,85 @@ const swaggerDocs={
     	},
     },
     definitions: {
-        Users: {
+        Packagestation: {
+            required: ["number", "street","city,","zip","country","status"],
+            properties: {
+                number: {
+                    type: "Number",
+                },
+                street: {
+                    type: "string",
+                },
+                city: {
+                    type: "string",
+                },
+                zip: {
+                    type: "Number",
+                },
+                country: {
+                    type: "string",
+                },
+                status: {
+                    type: "string",
+                },
+            },
+        },
+        Shipment: {
+            required: ["trackingnumber", "street","city,","zip","country","status"],
+            properties: {
+                trackingnumber: {
+                    type: "Number",
+                },
+                street: {
+                    type: "string",
+                },
+                city: {
+                    type: "string",
+                },
+                zip: {
+                    type: "Number",
+                },
+                country: {
+                    type: "string",
+                },
+                status: {
+                    type: "string",
+                },
+                weight: {
+                    type: "string"
+                },
+            },
+        },
+        User: {
             required: ["trackingnumber", "street","city,","zip","country","status"],
             properties: {
                 postnumber: {
                     type: "Number",
                 },
                 firstname: {
-                    type: "String",
+                    type: "string",
                 },
                 name: {
-                    type: "String",
+                    type: "string",
                 },
                 street: {
-                    type: "String",
+                    type: "string",
                 },
                 city: {
-                    type: "String",
+                    type: "string",
                 },
                 zip: {
                     type: "Number",
                 },
                 country: {
-                    type: "String",
+                    type: "string",
                 },
                 status: {
-                    type: "String",
+                    type: "string",
                 },
             },
         },
+        
     },
 };
 

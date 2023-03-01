@@ -14,6 +14,16 @@ export const getUsersById = async (req, res) => {
     let result = await User.findById(req.params.id);
     req.status(200).send(result);
 }
+export const deleteUsersById = async (req, res) => {
+    let user = await User.findById(req.params.id);
+    if(user !=null) {
+        await User.deleteOne({_id: req.params.id})
+        return res.status(200).send("Done")
+    }
+        
+    res.status(400).send("Not found")
+
+};
 export const addUser = async (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()) {

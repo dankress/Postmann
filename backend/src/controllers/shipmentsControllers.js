@@ -16,6 +16,17 @@ export const getShipmentsById = async (req, res) => {
     let result = await Shipment.findById(req.params.id)
     res.status(200).send(result);
 }
+
+export const deleteShipmentsById = async (req, res) => {
+    let shipment = await Shipment.findById(req.params.id)
+    if(shipment !=null) {
+        await Shipment.deleteOne({_id: req.params.id})
+        return res.status(200).send("Done")
+    }
+
+    res.status(400).send("Not found")
+};
+
 export const addShipment = async (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
@@ -30,7 +41,7 @@ export const addShipment = async (req, res) => {
         status: req.body.status,
         weight: req.body.weight,
     });
-    user.save(shipment).then((todo) => res.status(201).send(todo));
+    shipment.save(shipment).then((todo) => res.status(201).send(todo));
 };
 
 

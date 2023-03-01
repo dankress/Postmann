@@ -13,8 +13,19 @@ export const findPackagestationsByNumber = async (req, res) => {
 };
 
 export const getPackagestationsById = async (req, res) => {
+    let result = await Packagestation.findById(req.params.id)
+    res.status(200).send(result);
+};
+
+export const deletePackagestationsById = async (req, res) => {
     let packagestation = await Packagestation.findById(req.params.id)
-    res.status(200).send(packagestation);
+    if(packagestation !=null) {
+        await Packagestation.deleteOne({_id: req.params.id})
+        return res.status(200).send("Done")
+    }
+    
+    
+    res.status(400).send("Not found")
 };
 
 
