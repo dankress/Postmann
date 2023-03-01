@@ -22,20 +22,20 @@ class App extends React.Component {
   // this is displayed on the screen
   render() {
     return (
-      <div>
-        <div id="title">Welcome to Postmann! </div>
-        <button id="fetcher" onClick={this.fetchDisplayData}>
-          Check out our packagestations!
-        </button>
-        <div className="data">
-          {/* generates a div for every entry */}
-          {this.state.packagestations.map((packagestation, key) => (
-            <div key={key}>
-              {packagestation.number}
-            </div>
-          ))}
+        <div>
+          <div id="title">Welcome to Postmann! </div>
+          <button id="fetcher" onClick={this.fetchDisplayData}>
+            Check out our packagestations!
+          </button>
+          <div className="data">
+            {/* generates a div for every entry */}
+            {this.state.packagestations.map((packagestation, key) => (
+              <div key={key}>
+                Number: {packagestation.number} | Street: {packagestation.street} | City: {packagestation.city} | Zip-Code: {packagestation.zip} | Country: {packagestation.country} | Status: {packagestation.status}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
     );
   }
 }
