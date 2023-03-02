@@ -28,6 +28,25 @@ export const deletePackagestationsById = async (req, res) => {
     res.status(400).send("Not found")
 };
 
+export const patchPackagestationById = async (req, res) => {
+    try {
+      let packagestation = await Packagestation.findById(req.params.id);
+  
+      if (!packagestation) {
+        return res.status(404).send("Packagestation not found");
+      }
+  
+      Object.assign(packagestation, req.body);
+  
+      await packagestation.save();
+  
+      return res.status(200).send(packagestation);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).send("Server Error");
+    }
+  };
+
 
 export const addPackagestation = async (req, res) => {
     const errors = validationResult(req);
