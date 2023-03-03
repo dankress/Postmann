@@ -19,15 +19,21 @@ const swaggerDocs={
     produces: ["application/json"],
     paths: {
         "/packagestations": {
-          get: {
-            tags: ["Packagestations"],
-            summary: "Get all packagestations in the system",
-            responses: {
-                200: {
-                    description: "OK",
-                    schema: {
-                        $ref: "#/definitions/Packagestation",
+            get: {
+                tags: ["Packagestations"],
+                summary: "Get all packagestations in the system",
+                responses: {
+                    200: {
+                        description: "OK",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
                         },
+                    },
+                    400: {
+                        description: "Bad Request",
+                    },
+                    404: {
+                        description: "not found",
                     },
                 },
             },
@@ -45,11 +51,23 @@ const swaggerDocs={
                     },
                 ],
                 responses: {
-                    201: {
-                        description: "Created",
+                    200: {
+                        description: "OK",
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },
+                    },
+                    201:{
+                        description: "Created",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    400: {
+                        description: "Bad Request",
+                    },
+                    404: {
+                        description: "not found",
                     },
                 },
             },
@@ -65,10 +83,19 @@ const swaggerDocs={
                 ],
                 responses: {
                     200: {
-                        description: "Deleted",
+                        description: "OK",
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },
+                    },
+                    201:{
+                        description: "Deleted",
+                    },
+                    400: {
+                        description: "Bad Request",
+                    },
+                    404: {
+                        description: "not found",
                     },
                 },
             },
@@ -87,10 +114,22 @@ const swaggerDocs={
                 ],
                 responses: {
                     200: {
-                        description: "Patched",
+                        description: "OK",
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },
+                    },
+                    201:{
+                        description: "Patched",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    400: {
+                        description: "Bad Request",
+                    },
+                    404: {
+                        description: "not found",
                     },
                 },
             },
@@ -114,6 +153,12 @@ const swaggerDocs={
                             schema: {
                             $ref: "#/definitions/Package",
                             },
+                        },
+                        400: {
+                            description: "Bad Request",
+                        },
+                        404: {
+                            description: "not found",
                         },
                     },
                 },
@@ -139,6 +184,7 @@ const swaggerDocs={
                                 $ref: "#/definitions/Packagestation",
                             },
                         },
+                        
                     },
                 },
             },
@@ -153,6 +199,12 @@ const swaggerDocs={
                     schema: {
                         $ref: "#/definitions/Shipment",
                         },
+                    },
+                    400: {
+                        description: "Bad Request",
+                    },
+                    404: {
+                        description: "not found",
                     },
                 },
             },
@@ -170,11 +222,23 @@ const swaggerDocs={
                     },
                 ],
                 responses: {
-                    201: {
+                    200: {
+                        description: "OK",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    201:{
                         description: "Created",
                         schema: {
                             $ref: "#/definitions/Shipment",
                         },
+                    },
+                    400: {
+                        description: "Bad Request",
+                    },
+                    404: {
+                        description: "not found",
                     },
                 },
             },
@@ -295,7 +359,7 @@ const swaggerDocs={
                     },
                 ],
                 responses: {
-                    201: {
+                    200: {
                         description: "Created",
                         schema: {
                             $ref: "#/definitions/User",
