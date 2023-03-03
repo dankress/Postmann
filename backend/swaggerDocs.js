@@ -398,6 +398,9 @@ const swaggerDocs={
         Packagestation: {
             required: ["number", "street","city,","zip","country","status"],
             properties: {
+                id: {
+                    type: "string",
+                },
                 number: {
                     type: "Number",
                 },
@@ -421,6 +424,9 @@ const swaggerDocs={
         Shipment: {
             required: ["trackingnumber", "street","city,","zip","country","status","weight"],
             properties: {
+                id: {
+                    type: "string",
+                },
                 trackingnumber: {
                     type: "Number",
                 },
@@ -447,6 +453,9 @@ const swaggerDocs={
         User: {
             required: ["postnumber", "firstname", "name", "street","city,","zip","country","status"],
             properties: {
+                id: {
+                    type: "string",
+                },
                 postnumber: {
                     type: "Number",
                 },
