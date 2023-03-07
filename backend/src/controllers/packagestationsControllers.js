@@ -2,30 +2,64 @@ import { check, validationResult } from "express-validator";
 import { Packagestation } from "../models/packagestation.js";
 
 export const getPackagestations = async (req, res) => {
-    res.set("Access-Control-Allow-Origin", "http://localhost:3000");
-    const packagestations = await Packagestation.find();
-    res.status(200).send(packagestations);
-};
+    try {
+      res.set("Access-Control-Allow-Origin", "http://localhost:3000");
+      const packagestations = await Packagestation.find();
+      if(packagestations.length === 0){
+        res.status(404).send('No Packagestations found');
+      }else{
+        res.status(200).send(packagestations);
+      }
+      
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Error retrieving package stations');
+    }
+  };
 
-export const findPackagestationsByNumber = async (req, res) => {
-    let result = await Packagestation.find({number: req.query.number});
-    res.status(200).send(result);
-};
+  export const findPackagestationsByNumber = async (req, res) => {
+    try {
+      let result = await Packagestation.find({number: req.query.number});
+      
+      if (result.length === 0) {
+        res.status(404).send('Package station not found');
+      } else {
+        res.status(200).send(result);
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Error retrieving package stations by number');
+    }
+  };
 
 export const getPackagestationsById = async (req, res) => {
+    try {
     let result = await Packagestation.findById(req.params.id)
+    if (result.length === 0) {
+        res.status(404).send('Package station not found');
+      } else {
     res.status(200).send(result);
+      }
+    }catch (error) {
+    console.error(error);
+    res.status(500).send('Error retrieving package stations by id');
+  }
 };
 
 export const deletePackagestationsById = async (req, res) => {
-    let packagestation = await Packagestation.findById(req.params.id)
-    if(packagestation !=null) {
-        await Packagestation.deleteOne({_id: req.params.id})
-        return res.status(200).send("Done")
-    }
-    
-    
-    res.status(400).send("Not found")
+
+    try {
+        let result = await Packagestation.findById(req.params.id)
+        if (result.length === 0) {
+            res.status(404).send('Package station not found');
+          } else {
+            await Packagestation.deleteOne({_id: req.params.id})
+            return res.status(200).send("Packagestation deleted")
+          }
+        }catch (error) {
+        console.error(error);
+        res.status(500).send('Error retrieving package stations by id');
+      }
 };
 
 export const patchPackagestationById = async (req, res) => {
