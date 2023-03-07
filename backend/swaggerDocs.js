@@ -19,14 +19,14 @@ const swaggerDocs={
     produces: ["application/json"],
     paths: {
         "/packagestations": {
-          get: {
-            tags: ["Packagestations"],
-            summary: "Get all packagestations in the system",
-            responses: {
-                200: {
-                    description: "OK",
-                    schema: {
-                        $ref: "#/definitions/Packagestation",
+            get: {
+                tags: ["Packagestations"],
+                summary: "Get all packagestations in the system",
+                responses: {
+                    200: {
+                        description: "OK",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
                         },
                     },
                 },
@@ -61,6 +61,9 @@ const swaggerDocs={
                         name: "packagestation",
                         in: "body",
                         description: "PackagestationID to be deleted",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
                     },
                 ],
                 responses: {
@@ -94,55 +97,56 @@ const swaggerDocs={
                     },
                 },
             },
-            "/{id}": {
-                get: {
-                    tags: ["Packagestations"],
-                    summary: "Get a specific packagestations by id",
-                    parameters: [
-                        {
-                            name: "id",
-                            in: "body",
-                            description: "Id of the packagestations searched for",
-                            schema: {
-                            $ref: "#/definitions/Packagestation",
-                            },
+        },
+
+        "/packagestations/{id}": {
+            get: {
+                tags: ["Packagestations"],
+                summary: "Get a specific packagestations by id",
+                parameters: [
+                    {
+                        name: "id",
+                        in: "body",
+                        description: "Id of the packagestations searched for",
+                        schema: {
+                        $ref: "#/definitions/Packagestation",
                         },
-                    ],
-                    responses: {
-                        200: {
-                            description: "OK",
-                            schema: {
-                            $ref: "#/definitions/Package",
-                            },
+                    },
+                ],
+                responses: {
+                    200: {
+                        description: "OK",
+                        schema: {
+                        $ref: "#/definitions/Package",
                         },
                     },
                 },
             },
-            "/search": {
-                get: {
-                    tags: ["Packagestations"],
-                    summary: "Get a specific packagestation by title",
-                    parameters: [
-                        {
-                            name: "title",
-                            in: "path",
-                            description: "Title of the packagestation searched for",
-                            schema: {
-                            $ref: "#/definitions/Packagestation",
-                            },
+        },
+        "/packagestations/search": {
+            get: {
+                tags: ["Packagestations"],
+                summary: "Get a specific packagestation by title",
+                parameters: [
+                    {
+                        name: "title",
+                        in: "path",
+                        description: "Title of the packagestation searched for",
+                        schema: {
+                        $ref: "#/definitions/Packagestation",
                         },
-                    ],
-                    responses: {
-                        200: {
-                            description: "OK",
-                            schema: {
-                                $ref: "#/definitions/Packagestation",
-                            },
+                    },
+                ],
+                responses: {
+                    200: {
+                        description: "OK",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
                         },
                     },
                 },
             },
-    	},
+        },
         "/shipments": {
           get: {
             tags: ["Shipments"],
