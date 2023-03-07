@@ -29,12 +29,13 @@ export const deletePackagestationsById = async (req, res) => {
 };
 
 export const patchPackagestationById = async (req, res) => {
-    
-   let response = await Packagestation.findByIdAndUpdate(req.params.id,req.body,{
-    new: false,
-   });
-
-   res.status(200).send(response);
+    try {
+      let response = await Packagestation.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      res.status(200).send(response);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error updating package station');
+    }
   };
 
 
