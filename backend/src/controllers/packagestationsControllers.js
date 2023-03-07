@@ -27,47 +27,15 @@ export const deletePackagestationsById = async (req, res) => {
     
     res.status(400).send("Not found")
 };
-/*
+
 export const patchPackagestationById = async (req, res) => {
-    try {
-      let packagestation = await Packagestation.findById(req.params.id);
-  
-      if (!packagestation) {
-        return res.status(404).send("Packagestation not found");
-      }
-  
-      Object.assign(packagestation, req.body);
-  
-      await packagestation.save();
-  
-      return res.status(200).send(packagestation);
-    } catch (err) {
-      console.error(err);
-      return res.status(500).send("Server Error");
-    }
-  };*/
-  export const patchPackagestationById = async (req, res) => {
-        let packagestation = await Packagestation.findById(req.params.id);
-        if(req.body.number){
-            packagestation.number = req.body.number;
-        }
-        if(req.body.street){
-            packagestation.street = req.body.street;
-        }
-        if(req.body.city){
-            packagestation.city = req.body.city;
-        }
-        if(req.body.zip){
-            packagestation.zip = req.body.zip;
-        }
-        if(req.body.country){
-            packagestation.country = req.body.country;
-        }
-        if(req.body.status){
-            packagestation.status = req.body.status;
-        }
-        packagestation.save(packagestation).then((todo) => res.status(200).send(todo));
-  }
+    
+   let response = await Packagestation.findByIdAndUpdate(req.params.id,req.body,{
+    new: false,
+   });
+
+   res.status(200).send(response);
+  };
 
 
 export const addPackagestation = async (req, res) => {
