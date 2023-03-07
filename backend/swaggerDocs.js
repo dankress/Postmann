@@ -254,12 +254,25 @@ const swaggerDocs={
                 ],
                 responses: {
                     200: {
+                        description: "OK",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    201:{
                         description: "Deleted",
                         schema: {
                             $ref: "#/definitions/Shipment",
                         },
                     },
+                    400: {
+                        description: "Bad Request",
+                    },
+                    404: {
+                        description: "not found",
+                    },
                 },
+                
             },
             patch: {
                 tags: ["Shipments"],
@@ -276,10 +289,22 @@ const swaggerDocs={
                 ],
                 responses: {
                     200: {
+                        description: "OK",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    201:{
                         description: "Patched",
                         schema: {
                             $ref: "#/definitions/Shipment",
                         },
+                    },
+                    400: {
+                        description: "Bad Request",
+                    },
+                    404: {
+                        description: "not found",
                     },
                 },
             },
@@ -328,20 +353,32 @@ const swaggerDocs={
                                 $ref: "#/definitions/Shipment",
                             },
                         },
+                        400: {
+                            description: "Bad Request",
+                        },
+                        404: {
+                            description: "not found",
+                        },
                     },
                 },
             },
     	},
         "/users": {
-          get: {
-            tags: ["Users"],
-            summary: "Get all users in the system",
-            responses: {
-                200: {
-                    description: "OK",
-                    schema: {
-                        $ref: "#/definitions/User",
+            get: {
+                tags: ["Users"],
+                summary: "Get all users in the system",
+                responses: {
+                    200: {
+                        description: "OK",
+                        schema: {
+                            $ref: "#/definitions/User",
                         },
+                    },
+                    400: {
+                        description: "Bad Request",
+                    },
+                    404: {
+                        description: "not found",
                     },
                 },
             },
@@ -360,10 +397,22 @@ const swaggerDocs={
                 ],
                 responses: {
                     200: {
-                        description: "Created",
+                        description: "OK",
                         schema: {
                             $ref: "#/definitions/User",
                         },
+                    },
+                    201:{
+                        description: "Created",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    400: {
+                        description: "Bad Request",
+                    },
+                    404: {
+                        description: "not found",
                     },
                 },
             },
@@ -379,10 +428,22 @@ const swaggerDocs={
                 ],
                 responses: {
                     200: {
-                        description: "Deleted",
+                        description: "OK",
                         schema: {
                             $ref: "#/definitions/User",
                         },
+                    },
+                    201:{
+                        description: "Deleted",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    400: {
+                        description: "Bad Request",
+                    },
+                    404: {
+                        description: "not found",
                     },
                 },
             },
@@ -401,10 +462,22 @@ const swaggerDocs={
                 ],
                 responses: {
                     200: {
-                        description: "Patched",
+                        description: "OK",
                         schema: {
                             $ref: "#/definitions/User",
                         },
+                    },
+                    201:{
+                        description: "Patched",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    400: {
+                        description: "Bad Request",
+                    },
+                    404: {
+                        description: "not found",
                     },
                 },
             },
@@ -429,6 +502,12 @@ const swaggerDocs={
                             $ref: "#/definitions/Package",
                             },
                         },
+                        400: {
+                            description: "Bad Request",
+                        },
+                        404: {
+                            description: "not found",
+                        },
                     },
                 },
             },
@@ -452,6 +531,12 @@ const swaggerDocs={
                             schema: {
                                 $ref: "#/definitions/User",
                             },
+                        },
+                        400: {
+                            description: "Bad Request",
+                        },
+                        404: {
+                            description: "not found",
                         },
                     },
                 },
