@@ -2,27 +2,65 @@ import { check, validationResult } from "express-validator";
 import { User } from "../models/user.js";
 
 export const getUsers = async (req, res) => {
-    const users = await User.find();
-    res.status(200).send(users);
+
+    try {
+        const users = await User.find();
+        if(users.length === 0){
+          res.status(404).send('No users found');
+        }else{
+          res.status(200).send(users);
+        }
+        
+      } catch (error) {
+        console.error(error);
+        res.status(500).send('Error retrieving users');
+      }
 }
 
 export const getUsersByPostnumber = async (req, res) => {
-    let users = await User.find({postnumber: req.query.postnumber});
-    res.status(200).send(users);
+
+    try {
+        let result = await User.find({postnumber: req.query.postnumber});
+       
+       if (result.length === 0) {
+         res.status(404).send('User not found');
+       } else {
+         res.status(200).send(result);
+       }
+     } catch (error) {
+       console.error(error);
+       res.status(500).send('Error retrieving user by number');
+     }
 }
 export const getUsersById = async (req, res) => {
-    let result = await User.findById(req.params.id);
-    req.status(200).send(result);
+
+
+    try {
+        let result = await User.findById(req.params.id);
+        if (result.length === 0) {
+            res.status(404).send('User not found');
+          } else {
+        res.status(200).send(result);
+          }
+        }catch (error) {
+        console.error(error);
+        res.status(500).send('Error retrieving user by id');
+      }
+
 }
 export const deleteUsersById = async (req, res) => {
-    let user = await User.findById(req.params.id);
-    if(user !=null) {
-        await User.deleteOne({_id: req.params.id})
-        return res.status(200).send("Done")
-    }
-        
-    res.status(400).send("Not found")
-
+    try {
+        let result = await User.findById(req.params.id);
+        if (result.length === 0) {
+            res.status(404).send('User not found');
+          } else {
+            await Packagestation.deleteOne({_id: req.params.id})
+            return res.status(200).send("User deleted")
+          }
+        }catch (error) {
+        console.error(error);
+        res.status(500).send('Error retrieving user by id');
+      }
 };
 export const addUser = async (req, res) => {
     const errors = validationResult(req);

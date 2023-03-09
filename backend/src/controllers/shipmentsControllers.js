@@ -3,28 +3,68 @@ import { Shipment } from "../models/shipment.js";
 
 
 export const getShipments = async (req, res) => {
-    const shipments = await Shipment.find();
-    res.status(200).send(shipments);
+
+    try {
+        const shipments = await Shipment.find();
+        if(shipments.length === 0){
+          res.status(404).send('No shipments found');
+        }else{
+          res.status(200).send(shipments);
+        }
+        
+      } catch (error) {
+        console.error(error);
+        res.status(500).send('Error retrieving shipments');
+      }
+    
+    
 }
 
 export const getShipmentsByTrackingNumber = async (req, res) => {
-    let shipments = await Shipment.find({trackingNumber: req.query.trackingNumber});
-    res.status(200).send(shipments);
+    try {
+         let result = await Shipment.find({trackingNumber: req.query.trackingNumber});
+        
+        if (result.length === 0) {
+          res.status(404).send('Shipment not found');
+        } else {
+          res.status(200).send(result);
+        }
+      } catch (error) {
+        console.error(error);
+        res.status(500).send('Error retrieving shipment by number');
+      }
 }
 
 export const getShipmentsById = async (req, res) => {
-    let result = await Shipment.findById(req.params.id)
-    res.status(200).send(result);
+
+    try {
+        let result = await Shipment.findById(req.params.id)
+        if (result.length === 0) {
+            res.status(404).send('Shipment not found');
+          } else {
+        res.status(200).send(result);
+          }
+        }catch (error) {
+        console.error(error);
+        res.status(500).send('Error retrieving shipment by id');
+      }
+
 }
 
 export const deleteShipmentsById = async (req, res) => {
-    let shipment = await Shipment.findById(req.params.id)
-    if(shipment !=null) {
-        await Shipment.deleteOne({_id: req.params.id})
-        return res.status(200).send("Done")
-    }
 
-    res.status(400).send("Not found")
+    try {
+        let result = await Shipment.findById(req.params.id)
+        if (result.length === 0) {
+            res.status(404).send('Shipment not found');
+          } else {
+            await Packagestation.deleteOne({_id: req.params.id})
+            return res.status(200).send("Shipment deleted")
+          }
+        }catch (error) {
+        console.error(error);
+        res.status(500).send('Error retrieving shipment by id');
+      }
 };
 
 export const addShipment = async (req, res) => {
