@@ -15,7 +15,7 @@ export const getPackagestations = async (req, res) => {
       console.error(error);
       res.status(500).send('Error retrieving package stations');
     }
-  };
+  };  
 
   export const findPackagestationsByNumber = async (req, res) => {
     try {
