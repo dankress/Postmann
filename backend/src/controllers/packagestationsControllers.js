@@ -17,7 +17,7 @@ export const getPackagestations = async (req, res) => {
     }
   };
 
-  export const findPackagestationsByNumber = async (req, res) => {
+  export const getPackagestationsByNumber = async (req, res) => {
     try {
       let result = await Packagestation.find({number: req.query.number});
       
@@ -32,37 +32,23 @@ export const getPackagestations = async (req, res) => {
     }
   };
 
-export const getPackagestationsById = async (req, res) => {
-    try {
-    let result = await Packagestation.findById(req.params.id)
-    if (result.length === 0) {
-        res.status(404).send('Package station not found');
-      } else {
-    res.status(200).send(result);
-      }
-    }catch (error) {
-    console.error(error);
-    res.status(500).send('Error retrieving package stations by id');
-  }
-};
-
-export const deletePackagestationsById = async (req, res) => {
+export const deletePackagestationsByNumber = async (req, res) => {
 
     try {
-        let result = await Packagestation.findById(req.params.id)
+        let result = await Packagestation.findPackagestationsByNumber(req.params.number)
         if (result.length === 0) {
             res.status(404).send('Package station not found');
           } else {
-            await Packagestation.deleteOne({_id: req.params.id})
+            await Packagestation.deleteOne({_number: req.params.number})
             return res.status(200).send("Packagestation deleted")
           }
         }catch (error) {
         console.error(error);
-        res.status(500).send('Error retrieving package stations by id');
+        res.status(500).send('Error retrieving package stations by number');
       }
 };
 
-export const patchPackagestationById = async (req, res) => {
+export const patchPackagestationByNumber = async (req, res) => {
     try {
       let response = await Packagestation.findByIdAndUpdate(req.params.id, req.body, { new: true });
       res.status(200).send(response);
@@ -93,7 +79,8 @@ export const addPackagestation = async (req, res) => {
 export const newPackagestationValidators =[
   check("number")
   .notEmpty().withMessage("number is required")
-  .isNumeric().withMessage("number must be numeric"),
+  .isNumeric().withMessage("number must be numeric")
+  .isLength({ min: 5, max: 5 }).withMessage("postnumber must be 5 digits long"),
 
 check("street")
   .notEmpty().withMessage("street is required")

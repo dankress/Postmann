@@ -1,21 +1,20 @@
 import express from "express";
 import{
     getPackagestations,
-    findPackagestationsByNumber,
-    getPackagestationsById,
+    getPackagestationsByNumber,
     addPackagestation,
     newPackagestationValidators,
-    deletePackagestationsById,
-    patchPackagestationById
+    patchPackagestationByNumber,
+    deletePackagestationsByNumber
 }from "../controllers/packagestationsControllers.js";
 
 const router = express.Router();
 
 router.get("/", getPackagestations);
-router.get("/:id", getPackagestationsById);
-router.get("/search", findPackagestationsByNumber);
+router.get("/:number", getPackagestationsByNumber);
+router.get("/search", getPackagestationsByNumber);
 router.post("/", newPackagestationValidators, addPackagestation);
-router.post("/:id",deletePackagestationsById);
-router.patch("/:id",patchPackagestationById)
+router.post("/:number",deletePackagestationsByNumber);
+router.patch("/:number",patchPackagestationByNumber)
 
 export default router;

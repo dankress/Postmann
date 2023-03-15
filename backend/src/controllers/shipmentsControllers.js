@@ -35,35 +35,19 @@ export const getShipmentsByTrackingNumber = async (req, res) => {
       }
 }
 
-export const getShipmentsById = async (req, res) => {
+export const deleteShipmentsByTrackingNumber = async (req, res) => {
 
     try {
-        let result = await Shipment.findById(req.params.id)
+        let result = await Shipment.getShipmentsByTrackingNumber(req.params.trackingNumber)
         if (result.length === 0) {
             res.status(404).send('Shipment not found');
           } else {
-        res.status(200).send(result);
-          }
-        }catch (error) {
-        console.error(error);
-        res.status(500).send('Error retrieving shipment by id');
-      }
-
-}
-
-export const deleteShipmentsById = async (req, res) => {
-
-    try {
-        let result = await Shipment.findById(req.params.id)
-        if (result.length === 0) {
-            res.status(404).send('Shipment not found');
-          } else {
-            await Packagestation.deleteOne({_id: req.params.id})
+            await Packagestation.deleteOne({_trackingNumber: req.params.trackingNumber})
             return res.status(200).send("Shipment deleted")
           }
         }catch (error) {
         console.error(error);
-        res.status(500).send('Error retrieving shipment by id');
+        res.status(500).send('Error retrieving shipment by tracking number');
       }
 };
 

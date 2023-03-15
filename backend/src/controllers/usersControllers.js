@@ -17,7 +17,7 @@ export const getUsers = async (req, res) => {
       }
 }
 
-export const getUsersByPostnumber = async (req, res) => {
+export const getUsersByPostNumber = async (req, res) => {
 
     try {
         let result = await User.find({postnumber: req.query.postnumber});
@@ -32,34 +32,19 @@ export const getUsersByPostnumber = async (req, res) => {
        res.status(500).send('Error retrieving user by number');
      }
 }
-export const getUsersById = async (req, res) => {
 
-
+export const deleteUsersByPostNumber = async (req, res) => {
     try {
-        let result = await User.findById(req.params.id);
+        let result = await User.getUsersByPostnumber(req.params.postnumber);
         if (result.length === 0) {
             res.status(404).send('User not found');
           } else {
-        res.status(200).send(result);
-          }
-        }catch (error) {
-        console.error(error);
-        res.status(500).send('Error retrieving user by id');
-      }
-
-}
-export const deleteUsersById = async (req, res) => {
-    try {
-        let result = await User.findById(req.params.id);
-        if (result.length === 0) {
-            res.status(404).send('User not found');
-          } else {
-            await Packagestation.deleteOne({_id: req.params.id})
+            await Packagestation.deleteOne({_postnumber: req.params.postnumber})
             return res.status(200).send("User deleted")
           }
         }catch (error) {
         console.error(error);
-        res.status(500).send('Error retrieving user by id');
+        res.status(500).send('Error retrieving user by post number');
       }
 };
 export const addUser = async (req, res) => {
