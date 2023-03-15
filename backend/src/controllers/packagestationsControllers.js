@@ -35,19 +35,22 @@ export const getPackagestations = async (req, res) => {
 export const getPackagestationsById = async (req, res) => {
     try {
     let result = await Packagestation.findById(req.params.id)
-    if (result.length === 0) {
-        res.status(404).send('Package station not found');
-      } else {
+    //if (result.length === 0) {
+      //  res.status(404).send('Package station not found');
+      //} else {
     res.status(200).send(result);
-      }
+      //}
     }catch (error) {
+      if(error.toString().includes("Cannot read properties of null")){
+        res.status(404).send('Package station not found');
+      }else{
     console.error(error);
     res.status(500).send('Error retrieving package stations by id');
-  }
-};
+      }
+    }
+  };
 
 export const deletePackagestationsById = async (req, res) => {
-
     try {
         let result = await Packagestation.findById(req.params.id)
         if (result.length === 0) {

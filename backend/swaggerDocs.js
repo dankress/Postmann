@@ -95,6 +95,7 @@ const swaggerDocs={
                 },
             },
             "/{id}": {
+                
                 get: {
                     tags: ["Packagestations"],
                     summary: "Get a specific packagestations by id",
@@ -402,7 +403,7 @@ const swaggerDocs={
                     type: "string",
                 },
                 number: {
-                    type: "Number",
+                    type: "integer",
                 },
                 street: {
                     type: "string",
@@ -411,7 +412,7 @@ const swaggerDocs={
                     type: "string",
                 },
                 zip: {
-                    type: "Number",
+                    type: "integer",
                 },
                 country: {
                     type: "string",
@@ -428,7 +429,7 @@ const swaggerDocs={
                     type: "string",
                 },
                 trackingnumber: {
-                    type: "Number",
+                    type: "integer",
                 },
                 street: {
                     type: "string",
@@ -437,7 +438,7 @@ const swaggerDocs={
                     type: "string",
                 },
                 zip: {
-                    type: "Number",
+                    type: "integer",
                 },
                 country: {
                     type: "string",
@@ -457,7 +458,7 @@ const swaggerDocs={
                     type: "string",
                 },
                 postnumber: {
-                    type: "Number",
+                    type: "integer",
                 },
                 firstname: {
                     type: "string",
@@ -472,7 +473,7 @@ const swaggerDocs={
                     type: "string",
                 },
                 zip: {
-                    type: "Number",
+                    type: "integer",
                 },
                 country: {
                     type: "string",
