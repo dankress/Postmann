@@ -91,10 +91,30 @@ export const addPackagestation = async (req, res) => {
 };
 
 export const newPackagestationValidators =[
-    check("number").notEmpty().withMessage("number is required"),
-    check("street").notEmpty().withMessage("street is required"),
-    check("city").notEmpty().withMessage("city is required"),
-    check("zip").notEmpty().withMessage("zip is required"),
-    check("country").notEmpty().withMessage("country is required"),
-    check("status").notEmpty().withMessage("status is required"),
+  check("number")
+  .notEmpty().withMessage("number is required")
+  .isNumeric().withMessage("number must be numeric"),
+
+check("street")
+  .notEmpty().withMessage("street is required")
+  .isLength({ max: 100 }).withMessage("street must be less than or equal to 100 characters"),
+
+check("city")
+  .notEmpty().withMessage("city is required")
+  .isAlpha().withMessage("city must only contain alphabetic characters")
+  .isLength({ max: 50 }).withMessage("city must be less than or equal to 50 characters"),
+
+check("zip")
+  .notEmpty().withMessage("zip is required")
+  .isNumeric().withMessage("zip must be numeric")
+  .isLength({ min: 5, max: 5 }).withMessage("zip must be 5 digits long"),
+
+check("country")
+  .notEmpty().withMessage("country is required")
+  .isAlpha().withMessage("country must only contain alphabetic characters")
+  .isLength({ max: 50 }).withMessage("country must be less than or equal to 50 characters"),
+
+check("status")
+  .notEmpty().withMessage("status is required")
+  .isIn(["active", "inactive"]).withMessage("status must be either 'active' or 'inactive'"),
 ]
