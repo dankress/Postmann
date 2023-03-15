@@ -22,7 +22,7 @@ export const getShipments = async (req, res) => {
 
 export const getShipmentsByTrackingNumber = async (req, res) => {
     try {
-         let result = await Shipment.find({trackingNumber: req.query.trackingNumber});
+         let result = await Shipment.find({_trackingNumber: req.query.trackingNumber});
         
         if (result.length === 0) {
           res.status(404).send('Shipment not found');
