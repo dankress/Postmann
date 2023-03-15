@@ -50,7 +50,8 @@ export const deletePackagestationsByNumber = async (req, res) => {
 
 export const patchPackagestationByNumber = async (req, res) => {
     try {
-      let response = await Packagestation.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      let response = await Packagestation.findOneAndUpdate({_number: req.params.number},{ $set: { _street: req.params.street, _city: req.params.city, _zip: req.params.zip, _country: req.params.country, _status: req.params.status } },
+        { new: true });
       res.status(200).send(response);
     } catch (err) {
       console.error(err);
