@@ -20,7 +20,7 @@ export const getUsers = async (req, res) => {
 export const getUsersByPostNumber = async (req, res) => {
 
     try {
-        let result = await User.find({postnumber: req.query.postnumber});
+        let result = await User.find({_postnumber: req.query.postnumber});
        
        if (result.length === 0) {
          res.status(404).send('User not found');

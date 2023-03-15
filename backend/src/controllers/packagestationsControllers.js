@@ -19,7 +19,7 @@ export const getPackagestations = async (req, res) => {
 
   export const getPackagestationsByNumber = async (req, res) => {
     try {
-      let result = await Packagestation.find({number: req.query.number});
+      let result = await Packagestation.find({_number: req.query.number});
       
       if (result.length === 0) {
         res.status(404).send('Package station not found');
