@@ -1,4 +1,4 @@
-### Postmann
+# Postmann
 Simple example API for dockerized MongoDB
 
 ## Konkreter Anwendungsfall
@@ -10,7 +10,7 @@ Ein konkretes Szenario für den hier erstellten Service, wäre ein international
 
 - Sicherheitsrisiken: Wenn der Service von mehreren Parteien genutzt wird, kann er anfälliger für Sicherheitsbedrohungen sein, wie beispielsweise Hacking, DDoS-Angriffe, Datenlecks oder Identitätsdiebstahl.
 
-# Mögliche Lösungen:
+### Mögliche Lösungen:
 
 - Einsatz von Verschlüsselung und Zugriffskontrolle: Um Sicherheitsrisiken zu minimieren, sollten sensible Daten verschlüsselt und der Zugriff auf den Service durch geeignete Zugriffskontrollen und Authentifizierungsmethoden beschränkt werden.
 
