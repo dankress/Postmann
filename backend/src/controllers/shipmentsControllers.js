@@ -124,27 +124,41 @@ check("weight")
   .isFloat({ min: 0.1, max: 1000 }).withMessage("weight must be between 0.1 and 1000"),
 ];
 
-export const patchShipmentsValidator=[
+export const patchShipmentsValidator = [
+  check("street")
+    .optional({nullable: true})
+    .isLength({ max: 100 })
+    .withMessage("street must be less than or equal to 100 characters"),
 
-check("street")
-  .isLength({ max: 100 }).withMessage("street must be less than or equal to 100 characters"),
-
-check("city")
+    check("city")
+    .optional({nullable: true})
+  .notEmpty().withMessage("city is required")
   .isAlpha().withMessage("city must only contain alphabetic characters")
   .isLength({ max: 50 }).withMessage("city must be less than or equal to 50 characters"),
 
-check("zip")
-  .isNumeric().withMessage("zip must be numeric")
-  .isLength({ min: 5, max: 5 }).withMessage("zip must be 5 digits long"),
+  check("zip")
+    .optional({nullable: true})
+    .isNumeric()
+    .withMessage("zip must be numeric")
+    .isLength({ min: 5, max: 5 })
+    .withMessage("zip must be 5 digits long"),
 
-check("country")
-  .isAlpha().withMessage("country must only contain alphabetic characters")
-  .isLength({ max: 50 }).withMessage("country must be less than or equal to 50 characters"),
+  check("country")
+    .optional({nullable: true})
+    .isAlpha()
+    .withMessage("country must only contain alphabetic characters")
+    .isLength({ max: 50 })
+    .withMessage("country must be less than or equal to 50 characters"),
 
-check("status")
-  .isIn(["active", "inactive"]).withMessage("status must be either 'active' or 'inactive'"),
+  check("status")
+    .optional({nullable: true})
+    .isIn(["active", "inactive"])
+    .withMessage("status must be either 'active' or 'inactive'"),
 
-check("weight")
-  .isNumeric().withMessage("weight must be numeric")
-  .isFloat({ min: 0.1, max: 1000 }).withMessage("weight must be between 0.1 and 1000"),
-]
+  check("weight")
+    .optional({nullable: true})
+    .isNumeric()
+    .withMessage("weight must be numeric")
+    .isFloat({ min: 0.1, max: 1000 })
+    .withMessage("weight must be between 0.1 and 1000"),
+];

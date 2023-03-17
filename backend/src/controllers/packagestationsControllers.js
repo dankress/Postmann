@@ -115,26 +115,26 @@ check("status")
 ]
 export const patchPackagestationValidators =[
   
-  check("number")
+  check("number").optional({nullable: true})
   .isNumeric().withMessage("number must be numeric")
   .isLength({ min: 5, max: 5 }).withMessage("number must be 5 digits long"),
 
-check("street")
+check("street").optional({nullable: true})
   .isLength({ max: 100 }).withMessage("street must be less than or equal to 100 characters"),
 
-check("city")
+check("city").optional({nullable: true})
   .isAlpha().withMessage("city must only contain alphabetic characters")
   .isLength({ max: 50 }).withMessage("city must be less than or equal to 50 characters"),
 
-check("zip")
+check("zip").optional({nullable: true})
   .isNumeric().withMessage("zip must be numeric")
   .isLength({ min: 5, max: 5 }).withMessage("zip must be 5 digits long"),
 
-check("country")
+check("country").optional({nullable: true})
   .isAlpha().withMessage("country must only contain alphabetic characters")
   .isLength({ max: 50 }).withMessage("country must be less than or equal to 50 characters"),
 
-check("status")
+check("status").optional({nullable: true})
   .isIn(["active", "inactive"]).withMessage("status must be either 'active' or 'inactive'"),
 
 ]
