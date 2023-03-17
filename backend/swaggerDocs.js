@@ -153,9 +153,49 @@ const swaggerDocs={
                 summary: "Change a Packagestation with certain number",
                 parameters: [
                     {
-                        name: "packagestation",
+                        name: "number",
                         in: "query",
                         description: "Packagestation number to be changed",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    {
+                        name: "street",
+                        in: "query",
+                        description: "Packagestation street to be changed",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    {
+                        name: "city",
+                        in: "query",
+                        description: "Packagestation city to be changed",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    {
+                        name: "zip",
+                        in: "query",
+                        description: "Packagestation zip to be changed",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    {
+                        name: "country",
+                        in: "query",
+                        description: "Packagestation country to be changed",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    {
+                        name: "status",
+                        in: "query",
+                        description: "Packagestation status to be changed",
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },
@@ -247,15 +287,15 @@ const swaggerDocs={
             },
         },
 
-        "/shipments/number": {
+        "/shipments/trackingNumber": {
             get: {
                 tags: ["Shipments"],
-                summary: "Get a specific shipment by number",
+                summary: "Get a specific shipment by trackingNumber",
                 parameters: [
                     {
-                        name: "number",
+                        name: "trackingNumber",
                         in: "query",
-                        description: "Number of the shipment searched for",
+                        description: "Trackingnumber of the shipment searched for",
                         schema: {
                         $ref: "#/definitions/Shipment",
                         },
@@ -287,7 +327,7 @@ const swaggerDocs={
                 summary: "Delete a specific shipment by number",
                 parameters: [
                     {
-                        name: "number",
+                        name: "trackingNumber",
                         in: "query",
                         description: "Number of the shipment for deletion",
                         schema: {
@@ -321,9 +361,57 @@ const swaggerDocs={
                 summary: "Change a Shipment with certain number",
                 parameters: [
                     {
-                        name: "shipment",
+                        name: "trackingNumber",
                         in: "query",
-                        description: "Shipment number to be changed",
+                        description: "Shipment Trackingnumber to be changed",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    {
+                        name: "street",
+                        in: "query",
+                        description: "Shipment street to be changed",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    {
+                        name: "city",
+                        in: "query",
+                        description: "Shipment city to be changed",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    {
+                        name: "zip",
+                        in: "query",
+                        description: "Shipment zip to be changed",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    {
+                        name: "country",
+                        in: "query",
+                        description: "Shipment country to be changed",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    {
+                        name: "status",
+                        in: "query",
+                        description: "Shipment status to be changed",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    {
+                        name: "weight",
+                        in: "query",
+                        description: "Shipment weight to be changed",
                         schema: {
                             $ref: "#/definitions/Shipment",
                         },
@@ -415,15 +503,15 @@ const swaggerDocs={
             },
         },
 
-        "/users/number": {
+        "/users/postnumber": {
             get: {
                 tags: ["Users"],
                 summary: "Get a specific user by number",
                 parameters: [
                     {
-                        name: "number",
+                        name: "postnumber",
                         in: "query",
-                        description: "Number of the user searched for",
+                        description: "Postnumber of the user searched for",
                         schema: {
                         $ref: "#/definitions/User",
                         },
@@ -455,7 +543,7 @@ const swaggerDocs={
                 summary: "Delete a specific user by number",
                 parameters: [
                     {
-                        name: "number",
+                        name: "postnumber",
                         in: "query",
                         description: "Number of the user for deletion",
                         schema: {
@@ -484,14 +572,71 @@ const swaggerDocs={
                     },
                 },
             },
+            
             patch: {
                 tags: ["Users"],
                 summary: "Change a User with certain number",
                 parameters: [
                     {
-                        name: "user",
+                        name: "postnumber",
                         in: "query",
-                        description: "User number to be changed",
+                        description: "User postnumber to be changed",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    {
+                        name: "firstName",
+                        in: "query",
+                        description: "User first name to be changed",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    {
+                        name: "name",
+                        in: "query",
+                        description: "User name to be changed",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    {
+                        name: "street",
+                        in: "query",
+                        description: "User street to be changed",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    {
+                        name: "city",
+                        in: "query",
+                        description: "User city to be changed",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    {
+                        name: "zip",
+                        in: "query",
+                        description: "User zip to be changed",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    {
+                        name: "country",
+                        in: "query",
+                        description: "User country to be changed",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    {
+                        name: "status",
+                        in: "query",
+                        description: "User status to be changed",
                         schema: {
                             $ref: "#/definitions/User",
                         },
@@ -567,7 +712,7 @@ const swaggerDocs={
                     type: "string",
                 },
                 weight: {
-                    type: "string"
+                    type: "integer"
                 },
             },
         },
