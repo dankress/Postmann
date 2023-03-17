@@ -79,6 +79,9 @@ const swaggerDocs={
                         name: "packagestation",
                         in: "body",
                         description: "PackagestationID to be deleted",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
                     },
                 ],
                 responses: {
@@ -133,26 +136,27 @@ const swaggerDocs={
                     },
                 },
             },
-            "/{id}": {
-                get: {
-                    tags: ["Packagestations"],
-                    summary: "Get a specific packagestations by id",
-                    parameters: [
-                        {
-                            name: "id",
-                            in: "body",
-                            description: "Id of the packagestations searched for",
-                            schema: {
-                            $ref: "#/definitions/Packagestation",
-                            },
+        },
+
+        "/packagestations/{id}": {
+            get: {
+                tags: ["Packagestations"],
+                summary: "Get a specific packagestations by id",
+                parameters: [
+                    {
+                        name: "id",
+                        in: "body",
+                        description: "Id of the packagestations searched for",
+                        schema: {
+                        $ref: "#/definitions/Packagestation",
                         },
-                    ],
-                    responses: {
-                        200: {
-                            description: "OK",
-                            schema: {
-                            $ref: "#/definitions/Package",
-                            },
+                    },
+                ],
+                responses: {
+                    200: {
+                        description: "OK",
+                        schema: {
+                        $ref: "#/definitions/Package",
                         },
                         400: {
                             description: "Bad Request",
@@ -163,32 +167,32 @@ const swaggerDocs={
                     },
                 },
             },
-            "/search": {
-                get: {
-                    tags: ["Packagestations"],
-                    summary: "Get a specific packagestation by title",
-                    parameters: [
-                        {
-                            name: "title",
-                            in: "path",
-                            description: "Title of the packagestation searched for",
-                            schema: {
-                            $ref: "#/definitions/Packagestation",
-                            },
+        },
+        "/packagestations/search": {
+            get: {
+                tags: ["Packagestations"],
+                summary: "Get a specific packagestation by title",
+                parameters: [
+                    {
+                        name: "title",
+                        in: "path",
+                        description: "Title of the packagestation searched for",
+                        schema: {
+                        $ref: "#/definitions/Packagestation",
                         },
-                    ],
-                    responses: {
-                        200: {
-                            description: "OK",
-                            schema: {
-                                $ref: "#/definitions/Packagestation",
-                            },
+                    },
+                ],
+                responses: {
+                    200: {
+                        description: "OK",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
                         },
                         
                     },
                 },
             },
-    	},
+        },
         "/shipments": {
           get: {
             tags: ["Shipments"],
@@ -548,7 +552,7 @@ const swaggerDocs={
             required: ["number", "street","city,","zip","country","status"],
             properties: {
                 number: {
-                    type: "Number",
+                    type: "integer",
                 },
                 street: {
                     type: "string",
@@ -557,7 +561,7 @@ const swaggerDocs={
                     type: "string",
                 },
                 zip: {
-                    type: "Number",
+                    type: "integer",
                 },
                 country: {
                     type: "string",
@@ -571,7 +575,7 @@ const swaggerDocs={
             required: ["trackingnumber", "street","city,","zip","country","status","weight"],
             properties: {
                 trackingnumber: {
-                    type: "Number",
+                    type: "integer",
                 },
                 street: {
                     type: "string",
@@ -580,7 +584,7 @@ const swaggerDocs={
                     type: "string",
                 },
                 zip: {
-                    type: "Number",
+                    type: "integer",
                 },
                 country: {
                     type: "string",
@@ -597,7 +601,7 @@ const swaggerDocs={
             required: ["postnumber", "firstname", "name", "street","city,","zip","country","status"],
             properties: {
                 postnumber: {
-                    type: "Number",
+                    type: "integer",
                 },
                 firstname: {
                     type: "string",
@@ -612,7 +616,7 @@ const swaggerDocs={
                     type: "string",
                 },
                 zip: {
-                    type: "Number",
+                    type: "integer",
                 },
                 country: {
                     type: "string",

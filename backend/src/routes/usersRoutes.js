@@ -3,17 +3,16 @@ import{
     getUsers,
     addUser,
     newUserValidators,
-    getUsersById,
-    getUsersByPostnumber,
-    deleteUsersById
+    getUsersByPostNumber,
+    deleteUsersByPostNumber
 }from "../controllers/usersControllers.js";
 
 const router = express.Router();
 
 router.get("/", getUsers);
-router.get("/:id", getUsersById);
-router.get("/searchByPostnumber", getUsersByPostnumber);
+router.get("/:postNumber", getUsersByPostNumber);
+router.get("/searchByPostnumber", getUsersByPostNumber);
 router.post("/", newUserValidators, addUser);
-router.post("/:id",deleteUsersById);
+router.post("/:postNumber",deleteUsersByPostNumber);
 
 export default router;

@@ -3,6 +3,7 @@ node_modules
 
 # ide settings
 .vscode
+.idea
 
 # db logs
 .db
