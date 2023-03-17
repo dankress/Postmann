@@ -12,10 +12,10 @@ import{
 const router = express.Router();
 
 router.get("/", getPackagestations);
-router.get("/:number", getPackagestationsByNumber);
+router.get("/number", getPackagestationsByNumber);
 router.get("/search", getPackagestationsByNumber);
 router.post("/", newPackagestationValidators, addPackagestation);
-router.post("/:number",deletePackagestationsByNumber);
+router.delete("/number",deletePackagestationsByNumber);
 router.patch("/:number",patchPackagestationValidators, patchPackagestationByNumber)
 
 export default router;

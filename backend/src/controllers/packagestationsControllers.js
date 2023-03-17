@@ -19,7 +19,7 @@ export const getPackagestations = async (req, res) => {
 
   export const getPackagestationsByNumber = async (req, res) => {
     try {
-      let result = await Packagestation.find({_number: req.query.number});
+      let result = await Packagestation.find({number: req.query.number});
       
       if (result.length === 0) {
         res.status(404).send('Package station not found');
@@ -34,11 +34,11 @@ export const getPackagestations = async (req, res) => {
 
 export const deletePackagestationsByNumber = async (req, res) => {
     try {
-        let result = await Packagestation.find({_number: req.query.number} )
+        let result = await Packagestation.find({number: req.query.number} )
         if (result.length === 0) {
             res.status(404).send('Package station not found');
           } else {
-            await Packagestation.deleteOne({_number: req.query.number})
+            await Packagestation.deleteOne({number: req.query.number})
             return res.status(200).send("Packagestation deleted")
           }
         }catch (error) {
@@ -53,7 +53,7 @@ export const patchPackagestationByNumber = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
     try {
-      let response = await Packagestation.findOneAndUpdate({_number: req.query.number},{ $set: { street: req.query.street, city: req.query.city, zip: req.query.zip, country: req.query.country, status: req.query.status } },
+      let response = await Packagestation.findOneAndUpdate({number: req.query.number},{ $set: { street: req.query.street, city: req.query.city, zip: req.query.zip, country: req.query.country, status: req.query.status } },
         { new: true });
       res.status(200).send(response);
     } catch (err) {
@@ -84,7 +84,7 @@ export const newPackagestationValidators =[
   check("number")
   .notEmpty().withMessage("number is required")
   .isNumeric().withMessage("number must be numeric")
-  .isLength({ min: 5, max: 5 }).withMessage("postnumber must be 5 digits long"),
+  .isLength({ min: 5, max: 5 }).withMessage("number must be 5 digits long"),
 
 check("street")
   .notEmpty().withMessage("street is required")
@@ -113,7 +113,7 @@ export const patchPackagestationValidators =[
   
   check("number")
   .isNumeric().withMessage("number must be numeric")
-  .isLength({ min: 5, max: 5 }).withMessage("postnumber must be 5 digits long"),
+  .isLength({ min: 5, max: 5 }).withMessage("number must be 5 digits long"),
 
 check("street")
   .isLength({ max: 100 }).withMessage("street must be less than or equal to 100 characters"),
