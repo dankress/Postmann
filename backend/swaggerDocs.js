@@ -102,12 +102,12 @@ const swaggerDocs={
         "/packagestations/number": {
             get: {
                 tags: ["Packagestations"],
-                summary: "Get a specific packagestations by id",
+                summary: "Get a specific packagestation by number",
                 parameters: [
                     {
                         name: "id",
                         in: "body",
-                        description: "Id of the packagestations searched for",
+                        description: "Number of the packagestation searched for",
                         schema: {
                         $ref: "#/definitions/Packagestation",
                         },
