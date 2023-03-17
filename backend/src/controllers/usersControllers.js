@@ -2,7 +2,6 @@ import { check, validationResult } from "express-validator";
 import { User } from "../models/user.js";
 
 export const getUsers = async (req, res) => {
-
     try {
         const users = await User.find();
         if(users.length === 0){
@@ -17,10 +16,10 @@ export const getUsers = async (req, res) => {
       }
 }
 
-export const getUsersByPostNumber = async (req, res) => {
+export const getUsersByPostnumber = async (req, res) => {
 
     try {
-        let result = await User.find({_postnumber: req.query.postnumber});
+        let result = await User.find({postnumber: req.query.postnumber});
        
        if (result.length === 0) {
          res.status(404).send('User not found');
@@ -33,13 +32,13 @@ export const getUsersByPostNumber = async (req, res) => {
      }
 }
 
-export const deleteUsersByPostNumber = async (req, res) => {
+export const deleteUsersByPostnumber = async (req, res) => {
     try {
-        let result = await User.getUsersByPostnumber(req.params.postnumber);
+        let result = await User.find({postnumber: req.query.postnumber});
         if (result.length === 0) {
             res.status(404).send('User not found');
           } else {
-            await Packagestation.deleteOne({_postnumber: req.params.postnumber})
+            await User.deleteOne({postnumber: req.query.postnumber})
             return res.status(200).send("User deleted")
           }
         }catch (error) {
@@ -47,6 +46,27 @@ export const deleteUsersByPostNumber = async (req, res) => {
         res.status(500).send('Error retrieving user by post number');
       }
 };
+export const patchUserByPostnumber = async (req, res) => {
+  const errors = validationResult(req);
+  if(!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+    try {
+      let result = await User.find({postnumber: req.query.postnumber});
+      if (result.length === 0) {
+        res.status(404).send('User not found');
+      } else {
+      let response = await User.findOneAndUpdate({postnumber: req.query.postnumber},{ $set: {firstName: req.query.firstName, name: req.query.name, street: req.query.street, city: req.query.city, zip: req.query.zip,country: req.query.country, status: req.query.status,} },
+        { new: true });
+      res.status(200).send(response);
+      }
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error updating user');
+    }
+  };
+
+
 export const addUser = async (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
@@ -103,5 +123,35 @@ check("country")
 
 check("status")
   .notEmpty().withMessage("status is required")
+  .isIn(["active", "inactive"]).withMessage("status must be either 'active' or 'inactive'"),
+]
+
+export const patchUserValidators =[
+  
+
+check("firstName")
+  .isAlpha().withMessage("firstName must only contain alphabetic characters")
+  .isLength({ max: 50 }).withMessage("firstName must be less than or equal to 50 characters"),
+
+check("name")
+  .isAlpha().withMessage("name must only contain alphabetic characters")
+  .isLength({ max: 50 }).withMessage("name must be less than or equal to 50 characters"),
+
+check("street")
+  .isLength({ max: 100 }).withMessage("street must be less than or equal to 100 characters"),
+
+check("city")
+  .isAlpha().withMessage("city must only contain alphabetic characters")
+  .isLength({ max: 50 }).withMessage("city must be less than or equal to 50 characters"),
+
+check("zip")
+  .isNumeric().withMessage("zip must be numeric")
+  .isLength({ min: 5, max: 5 }).withMessage("zip must be 5 digits long"),
+
+check("country")
+  .isAlpha().withMessage("country must only contain alphabetic characters")
+  .isLength({ max: 50 }).withMessage("country must be less than or equal to 50 characters"),
+
+check("status")
   .isIn(["active", "inactive"]).withMessage("status must be either 'active' or 'inactive'"),
 ]

@@ -22,7 +22,7 @@ export const getShipments = async (req, res) => {
 
 export const getShipmentsByTrackingNumber = async (req, res) => {
     try {
-         let result = await Shipment.find({_trackingNumber: req.query.trackingNumber});
+         let result = await Shipment.find({trackingNumber: req.query.trackingNumber});
         
         if (result.length === 0) {
           res.status(404).send('Shipment not found');
@@ -38,18 +38,38 @@ export const getShipmentsByTrackingNumber = async (req, res) => {
 export const deleteShipmentsByTrackingNumber = async (req, res) => {
 
     try {
-        let result = await Shipment.getShipmentsByTrackingNumber(req.params.trackingNumber)
+        let result = await Shipment.find({trackingNumber: req.query.trackingNumber})
         if (result.length === 0) {
             res.status(404).send('Shipment not found');
           } else {
-            await Packagestation.deleteOne({_trackingNumber: req.params.trackingNumber})
+            await Shipment.deleteOne({trackingNumber: req.query.trackingNumber})
             return res.status(200).send("Shipment deleted")
           }
         }catch (error) {
         console.error(error);
-        res.status(500).send('Error retrieving shipment by tracking number');
+        res.status(500).send('Error retrieving shipment by tracking number: '+error);
       }
 };
+
+export const patchSchipmentsByTrackingnumber = async (req, res) => {
+  const errors = validationResult(req);
+  if(!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+    try {
+      let result = await Shipment.find({trackingNumber: req.query.trackingNumber})
+        if (result.length === 0) {
+            res.status(404).send('Shipment not found');
+          } else {
+      let response = await Shipment.findOneAndUpdate({trackingNumber: req.query.trackingNumber},{ $set: { street: req.query.street, city: req.query.city, zip: req.query.zip, country: req.query.country, status: req.query.status, weight: req.body.weight, } },
+        { new: true });
+      res.status(200).send(response);
+          }
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error updating shipments');
+    }
+  };
 
 export const addShipment = async (req, res) => {
     const errors = validationResult(req);
@@ -103,3 +123,28 @@ check("weight")
   .isNumeric().withMessage("weight must be numeric")
   .isFloat({ min: 0.1, max: 1000 }).withMessage("weight must be between 0.1 and 1000"),
 ];
+
+export const patchShipmentsValidator=[
+
+check("street")
+  .isLength({ max: 100 }).withMessage("street must be less than or equal to 100 characters"),
+
+check("city")
+  .isAlpha().withMessage("city must only contain alphabetic characters")
+  .isLength({ max: 50 }).withMessage("city must be less than or equal to 50 characters"),
+
+check("zip")
+  .isNumeric().withMessage("zip must be numeric")
+  .isLength({ min: 5, max: 5 }).withMessage("zip must be 5 digits long"),
+
+check("country")
+  .isAlpha().withMessage("country must only contain alphabetic characters")
+  .isLength({ max: 50 }).withMessage("country must be less than or equal to 50 characters"),
+
+check("status")
+  .isIn(["active", "inactive"]).withMessage("status must be either 'active' or 'inactive'"),
+
+check("weight")
+  .isNumeric().withMessage("weight must be numeric")
+  .isFloat({ min: 0.1, max: 1000 }).withMessage("weight must be between 0.1 and 1000"),
+]

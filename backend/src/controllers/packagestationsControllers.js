@@ -3,7 +3,6 @@ import { Packagestation } from "../models/packagestation.js";
 
 export const getPackagestations = async (req, res) => {
     try {
-      res.set("Access-Control-Allow-Origin", "http://localhost:3000");
       const packagestations = await Packagestation.find();
       if(packagestations.length === 0){
         res.status(404).send('No Packagestations found');
@@ -53,9 +52,14 @@ export const patchPackagestationByNumber = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
     try {
+      let result = await Packagestation.find({number: req.query.number} )
+        if (result.length === 0) {
+            res.status(404).send('Package station not found');
+          } else {
       let response = await Packagestation.findOneAndUpdate({number: req.query.number},{ $set: { street: req.query.street, city: req.query.city, zip: req.query.zip, country: req.query.country, status: req.query.status } },
         { new: true });
       res.status(200).send(response);
+          }
     } catch (err) {
       console.error(err);
       res.status(500).send('Error updating package station');
