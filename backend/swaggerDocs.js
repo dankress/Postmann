@@ -1,7 +1,7 @@
-const swaggerDocs={
+const swaggerDocs = {
     swagger: "2.0",
     info: {
-        info:{
+        info: {
             title: "Postmann",
             version: "1.0.0",
             description: "Simple example API for dockerized MongoDB"
@@ -11,11 +11,11 @@ const swaggerDocs={
     basePath: "/",
     tags: [
         {
-          name: "Packagestations",
-          description: "packagestation in the database",
+            name: "Packagestations",
+            description: "packagestation in the database",
         },
-      ],
-      consumes: ["application/json"],
+    ],
+    consumes: ["application/json"],
     produces: ["application/json"],
     paths: {
         "/packagestations": {
@@ -30,13 +30,19 @@ const swaggerDocs={
                         },
                     },
                     400: {
-                        description: "Bad request",
+                        description: "Bad Request",
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },
                     },
                     404: {
                         description: "Not found",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },
@@ -64,13 +70,25 @@ const swaggerDocs={
                         },
                     },
                     400: {
-                        description: "Bad request",
+                        description: "Bad Request",
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },
                     },
                     404: {
                         description: "Not found",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    409: {
+                        description: "Conflict",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },
@@ -89,7 +107,7 @@ const swaggerDocs={
                         in: "query",
                         description: "Number of the packagestation searched for",
                         schema: {
-                        $ref: "#/definitions/Packagestation",
+                            $ref: "#/definitions/Packagestation",
                         },
                     },
                 ],
@@ -97,17 +115,23 @@ const swaggerDocs={
                     200: {
                         description: "OK",
                         schema: {
-                        $ref: "#/definitions/Packagestation",
+                            $ref: "#/definitions/Packagestation",
                         },
                     },
                     400: {
-                        description: "Bad request",
+                        description: "Bad Request",
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },
                     },
                     404: {
                         description: "Not found",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },
@@ -123,7 +147,7 @@ const swaggerDocs={
                         in: "query",
                         description: "Number of the packagestation for deletion",
                         schema: {
-                        $ref: "#/definitions/Packagestation",
+                            $ref: "#/definitions/Packagestation",
                         },
                     },
                 ],
@@ -131,17 +155,23 @@ const swaggerDocs={
                     200: {
                         description: "OK",
                         schema: {
-                        $ref: "#/definitions/Packagestation",
+                            $ref: "#/definitions/Packagestation",
                         },
                     },
                     400: {
-                        description: "Bad request",
+                        description: "Bad Request",
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },
                     },
                     404: {
                         description: "Not found",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },
@@ -209,7 +239,7 @@ const swaggerDocs={
                         },
                     },
                     400: {
-                        description: "Bad request",
+                        description: "Bad Request",
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },
@@ -220,9 +250,15 @@ const swaggerDocs={
                             $ref: "#/definitions/Packagestation",
                         },
                     },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
                 },
             },
-            
+
         },
 
 
@@ -238,7 +274,7 @@ const swaggerDocs={
                         },
                     },
                     400: {
-                        description: "Bad request",
+                        description: "Bad Request",
                         schema: {
                             $ref: "#/definitions/Shipment",
                         },
@@ -247,6 +283,12 @@ const swaggerDocs={
                         description: "Not found",
                         schema: {
                             $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
                         },
                     },
                 },
@@ -272,7 +314,7 @@ const swaggerDocs={
                         },
                     },
                     400: {
-                        description: "Bad request",
+                        description: "Bad Request",
                         schema: {
                             $ref: "#/definitions/Shipment",
                         },
@@ -281,6 +323,18 @@ const swaggerDocs={
                         description: "Not found",
                         schema: {
                             $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    409: {
+                        description: "Conflict",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
                         },
                     },
                 },
@@ -297,7 +351,7 @@ const swaggerDocs={
                         in: "query",
                         description: "Trackingnumber of the shipment searched for",
                         schema: {
-                        $ref: "#/definitions/Shipment",
+                            $ref: "#/definitions/Shipment",
                         },
                     },
                 ],
@@ -305,11 +359,11 @@ const swaggerDocs={
                     200: {
                         description: "OK",
                         schema: {
-                        $ref: "#/definitions/Shipment",
+                            $ref: "#/definitions/Shipment",
                         },
                     },
                     400: {
-                        description: "Bad request",
+                        description: "Bad Request",
                         schema: {
                             $ref: "#/definitions/Shipment",
                         },
@@ -318,6 +372,12 @@ const swaggerDocs={
                         description: "Not found",
                         schema: {
                             $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
                         },
                     },
                 },
@@ -331,7 +391,7 @@ const swaggerDocs={
                         in: "query",
                         description: "Number of the shipment for deletion",
                         schema: {
-                        $ref: "#/definitions/Shipment",
+                            $ref: "#/definitions/Shipment",
                         },
                     },
                 ],
@@ -339,11 +399,11 @@ const swaggerDocs={
                     200: {
                         description: "OK",
                         schema: {
-                        $ref: "#/definitions/Shipment",
+                            $ref: "#/definitions/Shipment",
                         },
                     },
                     400: {
-                        description: "Bad request",
+                        description: "Bad Request",
                         schema: {
                             $ref: "#/definitions/Shipment",
                         },
@@ -352,6 +412,12 @@ const swaggerDocs={
                         description: "Not found",
                         schema: {
                             $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
                         },
                     },
                 },
@@ -425,7 +491,7 @@ const swaggerDocs={
                         },
                     },
                     400: {
-                        description: "Bad request",
+                        description: "Bad Request",
                         schema: {
                             $ref: "#/definitions/Shipment",
                         },
@@ -436,12 +502,18 @@ const swaggerDocs={
                             $ref: "#/definitions/Shipment",
                         },
                     },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
                 },
             },
-            
+
         },
-       
-       
+
+
         "/users": {
             get: {
                 tags: ["Users"],
@@ -454,7 +526,7 @@ const swaggerDocs={
                         },
                     },
                     400: {
-                        description: "Bad request",
+                        description: "Bad Request",
                         schema: {
                             $ref: "#/definitions/User",
                         },
@@ -463,6 +535,12 @@ const swaggerDocs={
                         description: "Not found",
                         schema: {
                             $ref: "#/definitions/User",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
                         },
                     },
                 },
@@ -488,7 +566,7 @@ const swaggerDocs={
                         },
                     },
                     400: {
-                        description: "Bad request",
+                        description: "Bad Request",
                         schema: {
                             $ref: "#/definitions/User",
                         },
@@ -497,6 +575,18 @@ const swaggerDocs={
                         description: "Not found",
                         schema: {
                             $ref: "#/definitions/User",
+                        },
+                    },
+                    409: {
+                        description: "Conflict",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
                         },
                     },
                 },
@@ -513,7 +603,7 @@ const swaggerDocs={
                         in: "query",
                         description: "Postnumber of the user searched for",
                         schema: {
-                        $ref: "#/definitions/User",
+                            $ref: "#/definitions/User",
                         },
                     },
                 ],
@@ -521,11 +611,11 @@ const swaggerDocs={
                     200: {
                         description: "OK",
                         schema: {
-                        $ref: "#/definitions/User",
+                            $ref: "#/definitions/User",
                         },
                     },
                     400: {
-                        description: "Bad request",
+                        description: "Bad Request",
                         schema: {
                             $ref: "#/definitions/User",
                         },
@@ -534,6 +624,12 @@ const swaggerDocs={
                         description: "Not found",
                         schema: {
                             $ref: "#/definitions/User",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
                         },
                     },
                 },
@@ -547,7 +643,7 @@ const swaggerDocs={
                         in: "query",
                         description: "Number of the user for deletion",
                         schema: {
-                        $ref: "#/definitions/User",
+                            $ref: "#/definitions/User",
                         },
                     },
                 ],
@@ -555,11 +651,11 @@ const swaggerDocs={
                     200: {
                         description: "OK",
                         schema: {
-                        $ref: "#/definitions/User",
+                            $ref: "#/definitions/User",
                         },
                     },
                     400: {
-                        description: "Bad request",
+                        description: "Bad Request",
                         schema: {
                             $ref: "#/definitions/User",
                         },
@@ -570,9 +666,15 @@ const swaggerDocs={
                             $ref: "#/definitions/User",
                         },
                     },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
                 },
             },
-            
+
             patch: {
                 tags: ["Users"],
                 summary: "Change a User with certain number",
@@ -650,7 +752,7 @@ const swaggerDocs={
                         },
                     },
                     400: {
-                        description: "Bad request",
+                        description: "Bad Request",
                         schema: {
                             $ref: "#/definitions/User",
                         },
@@ -661,14 +763,20 @@ const swaggerDocs={
                             $ref: "#/definitions/User",
                         },
                     },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
                 },
             },
-            
+
         },
     },
     definitions: {
         Packagestation: {
-            required: ["number", "street","city,","zip","country","status"],
+            required: ["number", "street", "city,", "zip", "country", "status"],
             properties: {
                 number: {
                     type: "integer",
@@ -691,7 +799,7 @@ const swaggerDocs={
             },
         },
         Shipment: {
-            required: ["trackingnumber", "street","city,","zip","country","status","weight"],
+            required: ["trackingnumber", "street", "city,", "zip", "country", "status", "weight"],
             properties: {
                 trackingNumber: {
                     type: "integer",
@@ -717,7 +825,7 @@ const swaggerDocs={
             },
         },
         User: {
-            required: ["postnumber", "firstname", "name", "street","city,","zip","country","status"],
+            required: ["postnumber", "firstname", "name", "street", "city,", "zip", "country", "status"],
             properties: {
                 postnumber: {
                     type: "integer",
@@ -745,7 +853,7 @@ const swaggerDocs={
                 },
             },
         },
-        
+
     },
 };
 
