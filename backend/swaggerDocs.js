@@ -102,12 +102,12 @@ const swaggerDocs={
             },
             patch: {
                 tags: ["Packagestations"],
-                summary: "Change a Packagestation with certain ID",
+                summary: "Change a Packagestation with certain number",
                 parameters: [
                     {
                         name: "packagestation",
                         in: "query",
-                        description: "PackagestationID to be changed",
+                        description: "Packagestation number to be changed",
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },

@@ -16,6 +16,6 @@ router.get("/number", getPackagestationsByNumber);
 router.get("/search", getPackagestationsByNumber);
 router.post("/", newPackagestationValidators, addPackagestation);
 router.delete("/number",deletePackagestationsByNumber);
-router.patch("/:number",patchPackagestationValidators, patchPackagestationByNumber)
+router.patch("/number",patchPackagestationValidators, patchPackagestationByNumber)
 
 export default router;
