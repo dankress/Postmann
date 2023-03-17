@@ -4,6 +4,7 @@ import{
     getPackagestationsByNumber,
     addPackagestation,
     newPackagestationValidators,
+    patchPackagestationValidators,
     patchPackagestationByNumber,
     deletePackagestationsByNumber
 }from "../controllers/packagestationsControllers.js";
@@ -15,6 +16,6 @@ router.get("/:number", getPackagestationsByNumber);
 router.get("/search", getPackagestationsByNumber);
 router.post("/", newPackagestationValidators, addPackagestation);
 router.post("/:number",deletePackagestationsByNumber);
-router.patch("/:number",patchPackagestationByNumber)
+router.patch("/:number",patchPackagestationValidators, patchPackagestationByNumber)
 
 export default router;

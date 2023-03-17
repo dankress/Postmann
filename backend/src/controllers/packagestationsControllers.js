@@ -33,13 +33,12 @@ export const getPackagestations = async (req, res) => {
   };
 
 export const deletePackagestationsByNumber = async (req, res) => {
-
     try {
-        let result = await Packagestation.findPackagestationsByNumber(req.params.number)
+        let result = await Packagestation.find({_number: req.query.number} )
         if (result.length === 0) {
             res.status(404).send('Package station not found');
           } else {
-            await Packagestation.deleteOne({_number: req.params.number})
+            await Packagestation.deleteOne({_number: req.query.number})
             return res.status(200).send("Packagestation deleted")
           }
         }catch (error) {
@@ -49,8 +48,12 @@ export const deletePackagestationsByNumber = async (req, res) => {
 };
 
 export const patchPackagestationByNumber = async (req, res) => {
+  const errors = validationResult(req);
+  if(!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
     try {
-      let response = await Packagestation.findOneAndUpdate({_number: req.params.number},{ $set: { _street: req.params.street, _city: req.params.city, _zip: req.params.zip, _country: req.params.country, _status: req.params.status } },
+      let response = await Packagestation.findOneAndUpdate({_number: req.query.number},{ $set: { street: req.query.street, city: req.query.city, zip: req.query.zip, country: req.query.country, status: req.query.status } },
         { new: true });
       res.status(200).send(response);
     } catch (err) {
@@ -105,4 +108,29 @@ check("country")
 check("status")
   .notEmpty().withMessage("status is required")
   .isIn(["active", "inactive"]).withMessage("status must be either 'active' or 'inactive'"),
+]
+export const patchPackagestationValidators =[
+  
+  check("number")
+  .isNumeric().withMessage("number must be numeric")
+  .isLength({ min: 5, max: 5 }).withMessage("postnumber must be 5 digits long"),
+
+check("street")
+  .isLength({ max: 100 }).withMessage("street must be less than or equal to 100 characters"),
+
+check("city")
+  .isAlpha().withMessage("city must only contain alphabetic characters")
+  .isLength({ max: 50 }).withMessage("city must be less than or equal to 50 characters"),
+
+check("zip")
+  .isNumeric().withMessage("zip must be numeric")
+  .isLength({ min: 5, max: 5 }).withMessage("zip must be 5 digits long"),
+
+check("country")
+  .isAlpha().withMessage("country must only contain alphabetic characters")
+  .isLength({ max: 50 }).withMessage("country must be less than or equal to 50 characters"),
+
+check("status")
+  .isIn(["active", "inactive"]).withMessage("status must be either 'active' or 'inactive'"),
+
 ]
