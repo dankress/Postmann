@@ -27,5 +27,3 @@ mongoose.connect("mongodb://mongo:27017/backend").then(() => {
 app.listen(port, () => {
   console.log(`Server is running on port http://localhost:${port}`);
 });
-
-

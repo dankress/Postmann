@@ -9,4 +9,7 @@ const packagestationSchema = new mongoose.Schema({
   status: String,
 });
 
-export const Packagestation = mongoose.model("Packagestation", packagestationSchema);
+export const Packagestation = mongoose.model(
+  "Packagestation",
+  packagestationSchema
+);
