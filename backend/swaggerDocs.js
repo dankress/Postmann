@@ -402,11 +402,8 @@ const swaggerDocs={
         Packagestation: {
             required: ["number", "street","city,","zip","country","status"],
             properties: {
-                id: {
-                    type: "string",
-                },
                 number: {
-                    type: "Number",
+                    type: "integer",
                 },
                 street: {
                     type: "string",
@@ -415,7 +412,7 @@ const swaggerDocs={
                     type: "string",
                 },
                 zip: {
-                    type: "Number",
+                    type: "integer",
                 },
                 country: {
                     type: "string",
@@ -428,11 +425,8 @@ const swaggerDocs={
         Shipment: {
             required: ["trackingnumber", "street","city,","zip","country","status","weight"],
             properties: {
-                id: {
-                    type: "string",
-                },
                 trackingnumber: {
-                    type: "Number",
+                    type: "integer",
                 },
                 street: {
                     type: "string",
@@ -441,7 +435,7 @@ const swaggerDocs={
                     type: "string",
                 },
                 zip: {
-                    type: "Number",
+                    type: "integer",
                 },
                 country: {
                     type: "string",
@@ -457,11 +451,8 @@ const swaggerDocs={
         User: {
             required: ["postnumber", "firstname", "name", "street","city,","zip","country","status"],
             properties: {
-                id: {
-                    type: "string",
-                },
                 postnumber: {
-                    type: "Number",
+                    type: "integer",
                 },
                 firstname: {
                     type: "string",
@@ -476,7 +467,7 @@ const swaggerDocs={
                     type: "string",
                 },
                 zip: {
-                    type: "Number",
+                    type: "integer",
                 },
                 country: {
                     type: "string",

@@ -15,11 +15,11 @@ export const getPackagestations = async (req, res) => {
       console.error(error);
       res.status(500).send('Error retrieving package stations');
     }
-  };
+  };  
 
-  export const findPackagestationsByNumber = async (req, res) => {
+  export const getPackagestationsByNumber = async (req, res) => {
     try {
-      let result = await Packagestation.find({number: req.query.number});
+      let result = await Packagestation.find({_number: req.query.number});
       
       if (result.length === 0) {
         res.status(404).send('Package station not found');
@@ -32,39 +32,26 @@ export const getPackagestations = async (req, res) => {
     }
   };
 
-export const getPackagestationsById = async (req, res) => {
-    try {
-    let result = await Packagestation.findById(req.params.id)
-    if (result.length === 0) {
-        res.status(404).send('Package station not found');
-      } else {
-    res.status(200).send(result);
-      }
-    }catch (error) {
-    console.error(error);
-    res.status(500).send('Error retrieving package stations by id');
-  }
-};
-
-export const deletePackagestationsById = async (req, res) => {
+export const deletePackagestationsByNumber = async (req, res) => {
 
     try {
-        let result = await Packagestation.findById(req.params.id)
+        let result = await Packagestation.findPackagestationsByNumber(req.params.number)
         if (result.length === 0) {
             res.status(404).send('Package station not found');
           } else {
-            await Packagestation.deleteOne({_id: req.params.id})
+            await Packagestation.deleteOne({_number: req.params.number})
             return res.status(200).send("Packagestation deleted")
           }
         }catch (error) {
         console.error(error);
-        res.status(500).send('Error retrieving package stations by id');
+        res.status(500).send('Error retrieving package stations by number');
       }
 };
 
-export const patchPackagestationById = async (req, res) => {
+export const patchPackagestationByNumber = async (req, res) => {
     try {
-      let response = await Packagestation.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      let response = await Packagestation.findOneAndUpdate({_number: req.params.number},{ $set: { _street: req.params.street, _city: req.params.city, _zip: req.params.zip, _country: req.params.country, _status: req.params.status } },
+        { new: true });
       res.status(200).send(response);
     } catch (err) {
       console.error(err);
@@ -91,10 +78,31 @@ export const addPackagestation = async (req, res) => {
 };
 
 export const newPackagestationValidators =[
-    check("number").notEmpty().withMessage("number is required"),
-    check("street").notEmpty().withMessage("street is required"),
-    check("city").notEmpty().withMessage("city is required"),
-    check("zip").notEmpty().withMessage("zip is required"),
-    check("country").notEmpty().withMessage("country is required"),
-    check("status").notEmpty().withMessage("status is required"),
+  check("number")
+  .notEmpty().withMessage("number is required")
+  .isNumeric().withMessage("number must be numeric")
+  .isLength({ min: 5, max: 5 }).withMessage("postnumber must be 5 digits long"),
+
+check("street")
+  .notEmpty().withMessage("street is required")
+  .isLength({ max: 100 }).withMessage("street must be less than or equal to 100 characters"),
+
+check("city")
+  .notEmpty().withMessage("city is required")
+  .isAlpha().withMessage("city must only contain alphabetic characters")
+  .isLength({ max: 50 }).withMessage("city must be less than or equal to 50 characters"),
+
+check("zip")
+  .notEmpty().withMessage("zip is required")
+  .isNumeric().withMessage("zip must be numeric")
+  .isLength({ min: 5, max: 5 }).withMessage("zip must be 5 digits long"),
+
+check("country")
+  .notEmpty().withMessage("country is required")
+  .isAlpha().withMessage("country must only contain alphabetic characters")
+  .isLength({ max: 50 }).withMessage("country must be less than or equal to 50 characters"),
+
+check("status")
+  .notEmpty().withMessage("status is required")
+  .isIn(["active", "inactive"]).withMessage("status must be either 'active' or 'inactive'"),
 ]
