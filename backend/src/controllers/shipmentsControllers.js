@@ -1,9 +1,7 @@
 import { check, validationResult } from "express-validator";
 import { Shipment } from "../models/shipment.js";
 
-
 export const getShipments = async (req, res) => {
-
     try {
         const shipments = await Shipment.find();
         if(shipments.length === 0){
@@ -11,19 +9,15 @@ export const getShipments = async (req, res) => {
         }else{
           res.status(200).send(shipments);
         }
-        
       } catch (error) {
         console.error(error);
         res.status(500).send('Error retrieving shipments');
       }
-    
-    
 }
 
 export const getShipmentsByTrackingNumber = async (req, res) => {
     try {
          let result = await Shipment.find({trackingNumber: req.query.trackingNumber});
-        
         if (result.length === 0) {
           res.status(404).send('Shipment not found');
         } else {
@@ -36,7 +30,6 @@ export const getShipmentsByTrackingNumber = async (req, res) => {
 }
 
 export const deleteShipmentsByTrackingNumber = async (req, res) => {
-
     try {
         let result = await Shipment.find({trackingNumber: req.query.trackingNumber})
         if (result.length === 0) {
@@ -76,7 +69,10 @@ export const addShipment = async (req, res) => {
     if(!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    const shipment = new Shipment({
+
+    let result = await Shipment.find({trackingNumber: req.body.trackingNumber})
+    if (result.length === 0) {
+      const shipment = new Shipment({
         trackingNumber: req.body.trackingNumber,
         street: req.body.street,
         city: req.body.city,
@@ -86,8 +82,11 @@ export const addShipment = async (req, res) => {
         weight: req.body.weight,
     });
     shipment.save(shipment).then((todo) => res.status(201).send(todo));
-};
+      } else {
 
+        res.status(409).send('A Shipment with this trackingnumber already exists');
+      }
+};
 
 export const newShipmentValidators =[
   check("trackingNumber")

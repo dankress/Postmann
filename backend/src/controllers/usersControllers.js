@@ -9,7 +9,6 @@ export const getUsers = async (req, res) => {
         }else{
           res.status(200).send(users);
         }
-        
       } catch (error) {
         console.error(error);
         res.status(500).send('Error retrieving users');
@@ -17,10 +16,8 @@ export const getUsers = async (req, res) => {
 }
 
 export const getUsersByPostnumber = async (req, res) => {
-
     try {
         let result = await User.find({postnumber: req.query.postnumber});
-       
        if (result.length === 0) {
          res.status(404).send('User not found');
        } else {
@@ -46,6 +43,7 @@ export const deleteUsersByPostnumber = async (req, res) => {
         res.status(500).send('Error retrieving user by post number');
       }
 };
+
 export const patchUserByPostnumber = async (req, res) => {
   const errors = validationResult(req);
   if(!errors.isEmpty()) {
@@ -66,31 +64,35 @@ export const patchUserByPostnumber = async (req, res) => {
     }
   };
 
-
 export const addUser = async (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    const user = new User({
-        postnumber: req.body.postnumber,
-        firstName: req.body.firstName,
-        name: req.body.name,
-        street: req.body.street,
-        city: req.body.city,
-        zip: req.body.zip,
-        country: req.body.country,
-        status: req.body.status,
-    });
-
-    user.save(user).then((todo) => res.status(201).send(todo));
+    let result = await User.find({postnumber: req.body.postnumber});
+      if (result.length === 0) {
+        const user = new User({
+          postnumber: req.body.postnumber,
+          firstName: req.body.firstName,
+          name: req.body.name,
+          street: req.body.street,
+          city: req.body.city,
+          zip: req.body.zip,
+          country: req.body.country,
+          status: req.body.status,
+      });
+      user.save(user).then((todo) => res.status(201).send(todo));
+      } else {
+        res.status(409).send('A User with this postnumber already exists');
+      }
 };
 
 export const newUserValidators =[
+
   check("postnumber")
   .notEmpty().withMessage("postnumber is required")
   .isNumeric().withMessage("postnumber must be numeric")
-  .isLength({ min: 5, max: 5 }).withMessage("postnumber must be 5 digits long"),
+  .isLength({ min: 10, max: 10 }).withMessage("postnumber must be 5 digits long"),
 
 check("firstName")
   .notEmpty().withMessage("firstName is required")
@@ -127,7 +129,6 @@ check("status")
 ]
 
 export const patchUserValidators =[
-  
 
 check("firstName").optional({nullable: true})
   .isAlpha().withMessage("firstName must only contain alphabetic characters")
