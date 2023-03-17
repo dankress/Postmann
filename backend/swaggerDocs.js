@@ -99,7 +99,7 @@ const swaggerDocs={
             },
         },
 
-        "/packagestations/number": {
+        "/packagestations/:number": {
             get: {
                 tags: ["Packagestations"],
                 summary: "Get a specific packagestation by number",
