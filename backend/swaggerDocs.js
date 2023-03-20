@@ -185,7 +185,7 @@ const swaggerDocs = {
                     {
                         name: "number",
                         in: "query",
-                        description: "Packagestation number to be changed",
+                        description: "Number of the packagestation to be changed",
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },
@@ -429,7 +429,7 @@ const swaggerDocs = {
                     {
                         name: "trackingNumber",
                         in: "query",
-                        description: "Shipment Trackingnumber to be changed",
+                        description: "Trackingnumber of the Shipment to be changed",
                         schema: {
                             $ref: "#/definitions/Shipment",
                         },
@@ -682,7 +682,7 @@ const swaggerDocs = {
                     {
                         name: "postnumber",
                         in: "query",
-                        description: "User postnumber to be changed",
+                        description: "Postnumber of the user to be changed",
                         schema: {
                             $ref: "#/definitions/User",
                         },
