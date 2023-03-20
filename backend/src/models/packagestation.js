@@ -4,7 +4,7 @@ const packagestationSchema = new mongoose.Schema({
   number: String,
   street: String,
   city: String,
-  zip: Number,
+  zip: String,
   country: String,
   status: String,
 });
