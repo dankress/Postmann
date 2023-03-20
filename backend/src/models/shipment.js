@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
 const shipmentSchema = new mongoose.Schema({
-  trackingNumber: Number,
+  trackingNumber: String,
   street: String,
   city: String,
-  zip: Number,
+  zip: String,
   country: String,
   status: String,
   weight: String,

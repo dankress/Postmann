@@ -779,7 +779,7 @@ const swaggerDocs = {
             required: ["number", "street", "city,", "zip", "country", "status"],
             properties: {
                 number: {
-                    type: "integer",
+                    type: "string",
                 },
                 street: {
                     type: "string",
@@ -788,7 +788,7 @@ const swaggerDocs = {
                     type: "string",
                 },
                 zip: {
-                    type: "integer",
+                    type: "string",
                 },
                 country: {
                     type: "string",
@@ -802,7 +802,7 @@ const swaggerDocs = {
             required: ["trackingnumber", "street", "city,", "zip", "country", "status", "weight"],
             properties: {
                 trackingNumber: {
-                    type: "integer",
+                    type: "string",
                 },
                 street: {
                     type: "string",
@@ -811,7 +811,7 @@ const swaggerDocs = {
                     type: "string",
                 },
                 zip: {
-                    type: "integer",
+                    type: "string",
                 },
                 country: {
                     type: "string",
@@ -828,7 +828,7 @@ const swaggerDocs = {
             required: ["postnumber", "firstname", "name", "street", "city,", "zip", "country", "status"],
             properties: {
                 postnumber: {
-                    type: "integer",
+                    type: "string",
                 },
                 firstName: {
                     type: "string",
@@ -843,7 +843,7 @@ const swaggerDocs = {
                     type: "string",
                 },
                 zip: {
-                    type: "integer",
+                    type: "string",
                 },
                 country: {
                     type: "string",

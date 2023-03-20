@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const packagestationSchema = new mongoose.Schema({
-  number: Number,
+  number: String,
   street: String,
   city: String,
   zip: Number,
