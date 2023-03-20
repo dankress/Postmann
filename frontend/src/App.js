@@ -27,11 +27,12 @@ class App extends React.Component {
           <button id="fetcher" onClick={this.fetchDisplayData}>
             Check out our packagestations!
           </button>
+          <div id="list">List of Packagestations: </div>
           <div className="data">
             {/* generates a div for every entry */}
             {this.state.packagestations.map((packagestation, key) => (
               <div key={key}>
-                Number: {packagestation.number} | Street: {packagestation.street} | City: {packagestation.city} | Zip-Code: {packagestation.zip} | Country: {packagestation.country} | Status: {packagestation.status}
+                Number: {packagestation.number} <span class="separator">|</span> Street: {packagestation.street} <span class="separator">|</span> City: {packagestation.city} <span class="separator">|</span> Zip-Code: {packagestation.zip} <span class="separator">|</span> Country: {packagestation.country} <span class="separator">|</span> Status: {packagestation.status}
               </div>
             ))}
           </div>
