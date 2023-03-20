@@ -2,6 +2,7 @@ import { check, validationResult } from "express-validator";
 import { Packagestation } from "../models/packagestation.js";
 
 export const getPackagestations = async (req, res) => {
+  res.set("Access-Control-Allow-Origin", "http://localhost:3000");
   try {
     const packagestations = await Packagestation.find();
     if (packagestations.length === 0) {
