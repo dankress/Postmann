@@ -9,8 +9,8 @@ import {
   deleteUsersByPostnumber,
 } from "../controllers/usersControllers.js";
 
+//Routes for the operations
 const router = express.Router();
-
 router.get("/", getUsers);
 router.get("/postnumber", getUsersByPostnumber);
 router.post("/", newUserValidators, addUser);
