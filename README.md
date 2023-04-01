@@ -1,5 +1,6 @@
 # Postmann
-Simple example API for dockerized MongoDB
+Postmann is a simple example API for dockerized MongoDB. It has the ability to store Packagestations, Users and Shipments in the database. 
+All of them can be filtered, patched and deleted. A frontend shows all stored Packagestations.
 
 ## Instruktionen zu Verwendung des Services
 
