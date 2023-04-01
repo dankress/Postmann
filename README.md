@@ -5,6 +5,7 @@ Simple example API for dockerized MongoDB
 
 ### Starten des backends
 cd backend
+docker-compose build --no-cache (nur beim ersten Starten)
 docker-compose up
 
 ### Starten des frontends
@@ -12,7 +13,9 @@ cd frontend
 npm run start
 
 ### Troubleshooting
-Möglicher Quickfix: .db Ordner löschen
+Alle Docker Container, Volumes und Images löschen
+.db Ordner löschen
+docker-compose build --no-cache
 
 ## Konkreter Anwendungsfall
 Ein konkretes Szenario für den hier erstellten Service, wäre ein international agierender Logistikdienstleister für Privat- und Geschäftskunden, welcher zudem ein Netz aus Paketstationen betreibt. Eine Eingliederung des Service in eine Gesamtarchitektur kann durchaus viellfälltig sein. Zunächst wären die abrufbaren Datenbestände nützlich für die Sendungsverfolgung und Abwicklungen in den Brief- bzw. Paketzentren. Ebenso würde man die Schnittstelle zur Informationsweitergabe über den Browser oder mobile Apps an Privat- und Geschäftskunden verwenden. Weitere Dienste könnten auf dem Datenbestand aufbauen, wie zum Beispiel, das gewährleisten der Ankunft von Waren und Schriftstücken, wie ein Einschreiben. Ähnlich wären die bereitgestellten Daten relevant für identitätsfeststellende Maßnahmen oder die Digitalisierung des Schriftverkehrs. Weitere Geschäftskunden-Lösungen wie Lagerlogistik und E-Commerce, sowie Supply-Chain könnten auf dem Datenbestand aufbauen und weitere Datenerhebungen strukturell ähnlich aufbauen.
