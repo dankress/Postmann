@@ -1,6 +1,7 @@
 import { check, validationResult } from "express-validator";
 import { Packagestation } from "../models/packagestation.js";
 
+//Returns all Packagestations in database
 export const getPackagestations = async (req, res) => {
   res.set("Access-Control-Allow-Origin", "http://localhost:3000");
   try {
@@ -16,6 +17,7 @@ export const getPackagestations = async (req, res) => {
   }
 };
 
+//Returns Packagestation with specific number
 export const getPackagestationsByNumber = async (req, res) => {
   try {
     let result = await Packagestation.find({ number: req.query.number });
@@ -30,6 +32,7 @@ export const getPackagestationsByNumber = async (req, res) => {
   }
 };
 
+//Deletes Packagestation with specific number, if it exists in the database
 export const deletePackagestationsByNumber = async (req, res) => {
   try {
     let result = await Packagestation.find({ number: req.query.number });
@@ -45,6 +48,7 @@ export const deletePackagestationsByNumber = async (req, res) => {
   }
 };
 
+//Patches Packagestation with specific number, if it exists in the database
 export const patchPackagestationByNumber = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -76,6 +80,7 @@ export const patchPackagestationByNumber = async (req, res) => {
   }
 };
 
+//Adds a new Packagestation to the database, with the provided parameteres, if number does not already exist
 export const addPackagestation = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -101,6 +106,7 @@ export const addPackagestation = async (req, res) => {
   }
 };
 
+//Validates the provided parameteres to create a new Packagestation and checks if all needed parameteres are provided
 export const newPackagestationValidators = [
   check("number")
     .notEmpty()
@@ -147,6 +153,7 @@ export const newPackagestationValidators = [
     .withMessage("status must be either 'active' or 'inactive'"),
 ];
 
+//Validates the provided parameteres for the patch of a Packagestation
 export const patchPackagestationValidators = [
   check("number")
     .optional({ nullable: true })

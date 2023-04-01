@@ -9,8 +9,8 @@ import {
   deletePackagestationsByNumber,
 } from "../controllers/packagestationsControllers.js";
 
+//Routes for the operations
 const router = express.Router();
-
 router.get("/", getPackagestations);
 router.get("/number", getPackagestationsByNumber);
 router.post("/", newPackagestationValidators, addPackagestation);

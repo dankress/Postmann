@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+//Schema for a Shipment
 const shipmentSchema = new mongoose.Schema({
   trackingNumber: String,
   street: String,

@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+//Schema for a Packagestaion
 const packagestationSchema = new mongoose.Schema({
   number: String,
   street: String,

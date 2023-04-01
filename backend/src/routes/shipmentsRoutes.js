@@ -9,8 +9,8 @@ import {
   deleteShipmentsByTrackingNumber,
 } from "../controllers/shipmentsControllers.js";
 
+//Routes for the operations
 const router = express.Router();
-
 router.get("/", getShipments);
 router.get("/trackingNumber", getShipmentsByTrackingNumber);
 router.post("/", newShipmentValidators, addShipment);

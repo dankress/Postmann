@@ -1,6 +1,7 @@
 import { check, validationResult } from "express-validator";
 import { Shipment } from "../models/shipment.js";
 
+//Returns all Shipments in database
 export const getShipments = async (req, res) => {
   try {
     const shipments = await Shipment.find();
@@ -15,6 +16,7 @@ export const getShipments = async (req, res) => {
   }
 };
 
+//Returns Shipment with specific Trackingnumber
 export const getShipmentsByTrackingNumber = async (req, res) => {
   try {
     let result = await Shipment.find({
@@ -31,6 +33,7 @@ export const getShipmentsByTrackingNumber = async (req, res) => {
   }
 };
 
+//Deletes Shipment with specific Trackingnumber, if it exists in the database
 export const deleteShipmentsByTrackingNumber = async (req, res) => {
   try {
     let result = await Shipment.find({
@@ -48,6 +51,7 @@ export const deleteShipmentsByTrackingNumber = async (req, res) => {
   }
 };
 
+//Patches Shipment with specific Trackingnumber, if it exists in the database
 export const patchSchipmentsByTrackingnumber = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -82,6 +86,7 @@ export const patchSchipmentsByTrackingnumber = async (req, res) => {
   }
 };
 
+//Adds a new Shipment to the database, with the provided parameteres, if Trackingnumber does not already exist
 export const addShipment = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -105,6 +110,7 @@ export const addShipment = async (req, res) => {
   }
 };
 
+//Validates the provided parameteres to create a new Shipment and checks if all needed parameteres are provided
 export const newShipmentValidators = [
   check("trackingNumber")
     .notEmpty()
@@ -159,6 +165,7 @@ export const newShipmentValidators = [
     .withMessage("weight must be between 0.1 and 1000"),
 ];
 
+//Validates the provided parameteres for the patch of a Shipment
 export const patchShipmentsValidator = [
   check("street")
     .optional({ nullable: true })

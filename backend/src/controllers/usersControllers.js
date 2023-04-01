@@ -1,6 +1,7 @@
 import { check, validationResult } from "express-validator";
 import { User } from "../models/user.js";
 
+//Returns all Users in database
 export const getUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -15,6 +16,7 @@ export const getUsers = async (req, res) => {
   }
 };
 
+//Returns User with specific Postnumber
 export const getUsersByPostnumber = async (req, res) => {
   try {
     let result = await User.find({ postnumber: req.query.postnumber });
@@ -29,6 +31,7 @@ export const getUsersByPostnumber = async (req, res) => {
   }
 };
 
+//Deletes User with specific Postnumber, if it exists in the database
 export const deleteUsersByPostnumber = async (req, res) => {
   try {
     let result = await User.find({ postnumber: req.query.postnumber });
@@ -44,6 +47,7 @@ export const deleteUsersByPostnumber = async (req, res) => {
   }
 };
 
+//Patches User with specific Postnumber, if it exists in the database
 export const patchUserByPostnumber = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -77,6 +81,7 @@ export const patchUserByPostnumber = async (req, res) => {
   }
 };
 
+//Adds a new User to the database, with the provided parameteres, if Postnumber does not already exist
 export const addUser = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -100,6 +105,7 @@ export const addUser = async (req, res) => {
   }
 };
 
+//Validates the provided parameteres to create a new User and checks if all needed parameteres are provided
 export const newUserValidators = [
   check("postnumber")
     .notEmpty()
@@ -162,6 +168,7 @@ export const newUserValidators = [
     .withMessage("status must be either 'active' or 'inactive'"),
 ];
 
+//Validates the provided parameteres for the patch of a User
 export const patchUserValidators = [
   check("firstName")
     .optional({ nullable: true })
