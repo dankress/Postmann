@@ -1,7 +1,7 @@
-const swaggerDocs={
+const swaggerDocs = {
     swagger: "2.0",
     info: {
-        info:{
+        info: {
             title: "Postmann",
             version: "1.0.0",
             description: "Simple example API for dockerized MongoDB"
@@ -11,11 +11,11 @@ const swaggerDocs={
     basePath: "/",
     tags: [
         {
-          name: "Packagestations",
-          description: "packagestation in the database",
+            name: "Packagestations",
+            description: "packagestation in the database",
         },
-      ],
-      consumes: ["application/json"],
+    ],
+    consumes: ["application/json"],
     produces: ["application/json"],
     paths: {
         "/packagestations": {
@@ -31,15 +31,27 @@ const swaggerDocs={
                     },
                     400: {
                         description: "Bad Request",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
                     },
                     404: {
-                        description: "not found",
+                        description: "Not found",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
                     },
                 },
             },
             post: {
                 tags: ["Packagestations"],
-                summary: "Add a new packagestations",
+                summary: "Add a new packagestation",
                 parameters: [
                     {
                         name: "packagestation",
@@ -51,134 +63,51 @@ const swaggerDocs={
                     },
                 ],
                 responses: {
-                    200: {
-                        description: "OK",
-                        schema: {
-                            $ref: "#/definitions/Packagestation",
-                        },
-                    },
-                    201:{
+                    201: {
                         description: "Created",
                         schema: {
-                            $ref: "#/definitions/Shipment",
+                            $ref: "#/definitions/Packagestation",
                         },
                     },
                     400: {
                         description: "Bad Request",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
                     },
                     404: {
-                        description: "not found",
-                    },
-                },
-            },
-            delete: {
-                tags: ["Packagestations"],
-                summary: "Delete a Packagestation with certain ID",
-                parameters: [
-                    {
-                        name: "packagestation",
-                        in: "body",
-                        description: "PackagestationID to be deleted",
+                        description: "Not found",
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },
                     },
-                ],
-                responses: {
-                    200: {
-                        description: "OK",
+                    409: {
+                        description: "Conflict",
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },
                     },
-                    201:{
-                        description: "Deleted",
-                    },
-                    400: {
-                        description: "Bad Request",
-                    },
-                    404: {
-                        description: "not found",
-                    },
-                },
-            },
-            patch: {
-                tags: ["Packagestations"],
-                summary: "Change a Packagestation with certain ID",
-                parameters: [
-                    {
-                        name: "packagestation",
-                        in: "body",
-                        description: "PackagestationID to be changed",
+                    500: {
+                        description: "Internal Server",
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },
-                    },
-                ],
-                responses: {
-                    200: {
-                        description: "OK",
-                        schema: {
-                            $ref: "#/definitions/Packagestation",
-                        },
-                    },
-                    201:{
-                        description: "Patched",
-                        schema: {
-                            $ref: "#/definitions/Shipment",
-                        },
-                    },
-                    400: {
-                        description: "Bad Request",
-                    },
-                    404: {
-                        description: "not found",
                     },
                 },
             },
         },
 
-        "/packagestations/{id}": {
+        "/packagestations/number": {
             get: {
                 tags: ["Packagestations"],
-                summary: "Get a specific packagestations by id",
+                summary: "Get a specific packagestation by number",
                 parameters: [
                     {
-                        name: "id",
-                        in: "body",
-                        description: "Id of the packagestations searched for",
+                        name: "number",
+                        in: "query",
+                        description: "Number of the packagestation searched for",
                         schema: {
-                        $ref: "#/definitions/Packagestation",
-                        },
-                    },
-                ],
-                responses: {
-                    200: {
-                        description: "OK",
-                        schema: {
-                        $ref: "#/definitions/Package",
-                        },
-                        400: {
-                            description: "Bad Request",
-                        },
-                        404: {
-                            description: "not found",
-                        },
-                    },
-                },
-            },
-        },
-        "/packagestations/search": {
-            get: {
-                tags: ["Packagestations"],
-                summary: "Get a specific packagestation by title",
-                parameters: [
-                    {
-                        name: "title",
-                        in: "path",
-                        description: "Title of the packagestation searched for",
-                        schema: {
-                        $ref: "#/definitions/Packagestation",
+                            $ref: "#/definitions/Packagestation",
                         },
                     },
                 ],
@@ -188,33 +117,185 @@ const swaggerDocs={
                         schema: {
                             $ref: "#/definitions/Packagestation",
                         },
-                        
+                    },
+                    400: {
+                        description: "Bad Request",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    404: {
+                        description: "Not found",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
                     },
                 },
             },
-        },
-        "/shipments": {
-          get: {
-            tags: ["Shipments"],
-            summary: "Get all shipments in the system",
-            responses: {
-                200: {
-                    description: "OK",
-                    schema: {
-                        $ref: "#/definitions/Shipment",
+            delete: {
+                tags: ["Packagestations"],
+                summary: "Delete a specific packagestation by number",
+                parameters: [
+                    {
+                        name: "number",
+                        in: "query",
+                        description: "Number of the packagestation for deletion",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                ],
+                responses: {
+                    200: {
+                        description: "OK",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
                         },
                     },
                     400: {
                         description: "Bad Request",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
                     },
                     404: {
-                        description: "not found",
+                        description: "Not found",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                },
+            },
+            patch: {
+                tags: ["Packagestations"],
+                summary: "Change a Packagestation with certain number",
+                parameters: [
+                    {
+                        name: "number",
+                        in: "query",
+                        description: "Number of the packagestation to be changed",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    {
+                        name: "street",
+                        in: "query",
+                        description: "Packagestation street to be changed",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    {
+                        name: "city",
+                        in: "query",
+                        description: "Packagestation city to be changed",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    {
+                        name: "zip",
+                        in: "query",
+                        description: "Packagestation zip to be changed",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    {
+                        name: "country",
+                        in: "query",
+                        description: "Packagestation country to be changed",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    {
+                        name: "status",
+                        in: "query",
+                        description: "Packagestation status to be changed",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                ],
+                responses: {
+                    200: {
+                        description: "Patched",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    400: {
+                        description: "Bad Request",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    404: {
+                        description: "Not found",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                },
+            },
+
+        },
+
+
+        "/shipments": {
+            get: {
+                tags: ["Shipments"],
+                summary: "Get all shipments in the system",
+                responses: {
+                    200: {
+                        description: "OK",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    400: {
+                        description: "Bad Request",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    404: {
+                        description: "Not found",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
                     },
                 },
             },
             post: {
                 tags: ["Shipments"],
-                summary: "Add a new shipments",
+                summary: "Add a new shipment",
                 parameters: [
                     {
                         name: "shipment",
@@ -226,13 +307,7 @@ const swaggerDocs={
                     },
                 ],
                 responses: {
-                    200: {
-                        description: "OK",
-                        schema: {
-                            $ref: "#/definitions/Shipment",
-                        },
-                    },
-                    201:{
+                    201: {
                         description: "Created",
                         schema: {
                             $ref: "#/definitions/Shipment",
@@ -240,52 +315,81 @@ const swaggerDocs={
                     },
                     400: {
                         description: "Bad Request",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
                     },
                     404: {
-                        description: "not found",
+                        description: "Not found",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    409: {
+                        description: "Conflict",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
                     },
                 },
             },
-            delete: {
+        },
+
+        "/shipments/trackingNumber": {
+            get: {
                 tags: ["Shipments"],
-                summary: "Delete a Shipment with certain ID",
+                summary: "Get a specific shipment by trackingNumber",
                 parameters: [
                     {
-                        name: "shipment",
-                        in: "body",
-                        description: "ShipmentID to be deleted",
+                        name: "trackingNumber",
+                        in: "query",
+                        description: "Trackingnumber of the shipment searched for",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
                     },
                 ],
                 responses: {
                     200: {
                         description: "OK",
-                        schema: {
-                            $ref: "#/definitions/Shipment",
-                        },
-                    },
-                    201:{
-                        description: "Deleted",
                         schema: {
                             $ref: "#/definitions/Shipment",
                         },
                     },
                     400: {
                         description: "Bad Request",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
                     },
                     404: {
-                        description: "not found",
+                        description: "Not found",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
                     },
                 },
-                
             },
-            patch: {
+            delete: {
                 tags: ["Shipments"],
-                summary: "Change a Shipment with certain ID",
+                summary: "Delete a specific shipment by number",
                 parameters: [
                     {
-                        name: "shipment",
-                        in: "body",
-                        description: "ShipmentID to be changed",
+                        name: "trackingNumber",
+                        in: "query",
+                        description: "Number of the shipment for deletion",
                         schema: {
                             $ref: "#/definitions/Shipment",
                         },
@@ -298,7 +402,89 @@ const swaggerDocs={
                             $ref: "#/definitions/Shipment",
                         },
                     },
-                    201:{
+                    400: {
+                        description: "Bad Request",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    404: {
+                        description: "Not found",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                },
+            },
+            patch: {
+                tags: ["Shipments"],
+                summary: "Change a Shipment with certain number",
+                parameters: [
+                    {
+                        name: "trackingNumber",
+                        in: "query",
+                        description: "Trackingnumber of the Shipment to be changed",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    {
+                        name: "street",
+                        in: "query",
+                        description: "Shipment street to be changed",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    {
+                        name: "city",
+                        in: "query",
+                        description: "Shipment city to be changed",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    {
+                        name: "zip",
+                        in: "query",
+                        description: "Shipment zip to be changed",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    {
+                        name: "country",
+                        in: "query",
+                        description: "Shipment country to be changed",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    {
+                        name: "status",
+                        in: "query",
+                        description: "Shipment status to be changed",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                    {
+                        name: "weight",
+                        in: "query",
+                        description: "Shipment weight to be changed",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
+                    },
+                ],
+                responses: {
+                    200: {
                         description: "Patched",
                         schema: {
                             $ref: "#/definitions/Shipment",
@@ -306,67 +492,28 @@ const swaggerDocs={
                     },
                     400: {
                         description: "Bad Request",
+                        schema: {
+                            $ref: "#/definitions/Shipment",
+                        },
                     },
                     404: {
-                        description: "not found",
-                    },
-                },
-            },
-            "/{id}": {
-                get: {
-                    tags: ["Shipments"],
-                    summary: "Get a specific shipments by id",
-                    parameters: [
-                        {
-                            name: "id",
-                            in: "body",
-                            description: "Id of the shipments searched for",
-                            schema: {
+                        description: "Not found",
+                        schema: {
                             $ref: "#/definitions/Shipment",
-                            },
                         },
-                    ],
-                    responses: {
-                        200: {
-                            description: "OK",
-                            schema: {
-                            $ref: "#/definitions/Package",
-                            },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
                         },
                     },
                 },
             },
-            "/search": {
-                get: {
-                    tags: ["Shipments"],
-                    summary: "Get a specific shipment by title",
-                    parameters: [
-                        {
-                            name: "title",
-                            in: "path",
-                            description: "Title of the shipment searched for",
-                            schema: {
-                            $ref: "#/definitions/Shipment",
-                            },
-                        },
-                    ],
-                    responses: {
-                        200: {
-                            description: "OK",
-                            schema: {
-                                $ref: "#/definitions/Shipment",
-                            },
-                        },
-                        400: {
-                            description: "Bad Request",
-                        },
-                        404: {
-                            description: "not found",
-                        },
-                    },
-                },
-            },
-    	},
+
+        },
+
+
         "/users": {
             get: {
                 tags: ["Users"],
@@ -380,15 +527,27 @@ const swaggerDocs={
                     },
                     400: {
                         description: "Bad Request",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
                     },
                     404: {
-                        description: "not found",
+                        description: "Not found",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
                     },
                 },
             },
             post: {
                 tags: ["Users"],
-                summary: "Add a new users",
+                summary: "Add a new user",
                 parameters: [
                     {
                         name: "user",
@@ -400,34 +559,92 @@ const swaggerDocs={
                     },
                 ],
                 responses: {
+                    201: {
+                        description: "Created",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    400: {
+                        description: "Bad Request",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    404: {
+                        description: "Not found",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    409: {
+                        description: "Conflict",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
+                    },
+                },
+            },
+        },
+
+        "/users/postnumber": {
+            get: {
+                tags: ["Users"],
+                summary: "Get a specific user by number",
+                parameters: [
+                    {
+                        name: "postnumber",
+                        in: "query",
+                        description: "Postnumber of the user searched for",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                ],
+                responses: {
                     200: {
                         description: "OK",
                         schema: {
                             $ref: "#/definitions/User",
                         },
                     },
-                    201:{
-                        description: "Created",
-                        schema: {
-                            $ref: "#/definitions/Shipment",
-                        },
-                    },
                     400: {
                         description: "Bad Request",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
                     },
                     404: {
-                        description: "not found",
+                        description: "Not found",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
                     },
                 },
             },
             delete: {
                 tags: ["Users"],
-                summary: "Delete a User with certain ID",
+                summary: "Delete a specific user by number",
                 parameters: [
                     {
-                        name: "user",
-                        in: "body",
-                        description: "UserID to be deleted",
+                        name: "postnumber",
+                        in: "query",
+                        description: "Number of the user for deletion",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
                     },
                 ],
                 responses: {
@@ -437,28 +654,91 @@ const swaggerDocs={
                             $ref: "#/definitions/User",
                         },
                     },
-                    201:{
-                        description: "Deleted",
-                        schema: {
-                            $ref: "#/definitions/Shipment",
-                        },
-                    },
                     400: {
                         description: "Bad Request",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
                     },
                     404: {
-                        description: "not found",
+                        description: "Not found",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
+                        },
                     },
                 },
             },
+
             patch: {
                 tags: ["Users"],
-                summary: "Change a User with certain ID",
+                summary: "Change a User with certain number",
                 parameters: [
                     {
-                        name: "user",
-                        in: "body",
-                        description: "UserID to be changed",
+                        name: "postnumber",
+                        in: "query",
+                        description: "Postnumber of the user to be changed",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    {
+                        name: "firstName",
+                        in: "query",
+                        description: "User first name to be changed",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    {
+                        name: "name",
+                        in: "query",
+                        description: "User name to be changed",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    {
+                        name: "street",
+                        in: "query",
+                        description: "User street to be changed",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    {
+                        name: "city",
+                        in: "query",
+                        description: "User city to be changed",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    {
+                        name: "zip",
+                        in: "query",
+                        description: "User zip to be changed",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    {
+                        name: "country",
+                        in: "query",
+                        description: "User country to be changed",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
+                    },
+                    {
+                        name: "status",
+                        in: "query",
+                        description: "User status to be changed",
                         schema: {
                             $ref: "#/definitions/User",
                         },
@@ -466,93 +746,40 @@ const swaggerDocs={
                 ],
                 responses: {
                     200: {
-                        description: "OK",
-                        schema: {
-                            $ref: "#/definitions/User",
-                        },
-                    },
-                    201:{
                         description: "Patched",
                         schema: {
-                            $ref: "#/definitions/Shipment",
+                            $ref: "#/definitions/User",
                         },
                     },
                     400: {
                         description: "Bad Request",
+                        schema: {
+                            $ref: "#/definitions/User",
+                        },
                     },
                     404: {
-                        description: "not found",
-                    },
-                },
-            },
-            "/{id}": {
-                get: {
-                    tags: ["Users"],
-                    summary: "Get a specific users by id",
-                    parameters: [
-                        {
-                            name: "id",
-                            in: "body",
-                            description: "Id of the users searched for",
-                            schema: {
+                        description: "Not found",
+                        schema: {
                             $ref: "#/definitions/User",
-                            },
                         },
-                    ],
-                    responses: {
-                        200: {
-                            description: "OK",
-                            schema: {
-                            $ref: "#/definitions/Package",
-                            },
-                        },
-                        400: {
-                            description: "Bad Request",
-                        },
-                        404: {
-                            description: "not found",
+                    },
+                    500: {
+                        description: "Internal Server",
+                        schema: {
+                            $ref: "#/definitions/Packagestation",
                         },
                     },
                 },
             },
-            "/search": {
-                get: {
-                    tags: ["Users"],
-                    summary: "Get a specific user by title",
-                    parameters: [
-                        {
-                            name: "title",
-                            in: "path",
-                            description: "Title of the user searched for",
-                            schema: {
-                            $ref: "#/definitions/User",
-                            },
-                        },
-                    ],
-                    responses: {
-                        200: {
-                            description: "OK",
-                            schema: {
-                                $ref: "#/definitions/User",
-                            },
-                        },
-                        400: {
-                            description: "Bad Request",
-                        },
-                        404: {
-                            description: "not found",
-                        },
-                    },
-                },
-            },
-    	},
+
+        },
     },
     definitions: {
         Packagestation: {
-            required: ["number", "street","city,","zip","country","status"],
+            required: ["number", "street", "city,", "zip", "country", "status"],
             properties: {
                 number: {
-                    type: "integer",
+                    type: "string",
                 },
                 street: {
                     type: "string",
@@ -561,7 +788,7 @@ const swaggerDocs={
                     type: "string",
                 },
                 zip: {
-                    type: "integer",
+                    type: "string",
                 },
                 country: {
                     type: "string",
@@ -572,10 +799,10 @@ const swaggerDocs={
             },
         },
         Shipment: {
-            required: ["trackingnumber", "street","city,","zip","country","status","weight"],
+            required: ["trackingnumber", "street", "city,", "zip", "country", "status", "weight"],
             properties: {
-                trackingnumber: {
-                    type: "integer",
+                trackingNumber: {
+                    type: "string",
                 },
                 street: {
                     type: "string",
@@ -584,7 +811,7 @@ const swaggerDocs={
                     type: "string",
                 },
                 zip: {
-                    type: "integer",
+                    type: "string",
                 },
                 country: {
                     type: "string",
@@ -593,17 +820,17 @@ const swaggerDocs={
                     type: "string",
                 },
                 weight: {
-                    type: "string"
+                    type: "integer"
                 },
             },
         },
         User: {
-            required: ["postnumber", "firstname", "name", "street","city,","zip","country","status"],
+            required: ["postnumber", "firstname", "name", "street", "city,", "zip", "country", "status"],
             properties: {
                 postnumber: {
-                    type: "integer",
+                    type: "string",
                 },
-                firstname: {
+                firstName: {
                     type: "string",
                 },
                 name: {
@@ -616,7 +843,7 @@ const swaggerDocs={
                     type: "string",
                 },
                 zip: {
-                    type: "integer",
+                    type: "string",
                 },
                 country: {
                     type: "string",
@@ -626,7 +853,7 @@ const swaggerDocs={
                 },
             },
         },
-        
+
     },
 };
 

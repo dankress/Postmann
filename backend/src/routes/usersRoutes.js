@@ -1,18 +1,20 @@
 import express from "express";
-import{
-    getUsers,
-    addUser,
-    newUserValidators,
-    getUsersByPostNumber,
-    deleteUsersByPostNumber
-}from "../controllers/usersControllers.js";
+import {
+  getUsers,
+  getUsersByPostnumber,
+  addUser,
+  newUserValidators,
+  patchUserValidators,
+  patchUserByPostnumber,
+  deleteUsersByPostnumber,
+} from "../controllers/usersControllers.js";
 
+//Routes for the operations
 const router = express.Router();
-
 router.get("/", getUsers);
-router.get("/:postNumber", getUsersByPostNumber);
-router.get("/searchByPostnumber", getUsersByPostNumber);
+router.get("/postnumber", getUsersByPostnumber);
 router.post("/", newUserValidators, addUser);
-router.post("/:postNumber",deleteUsersByPostNumber);
+router.delete("/postnumber", deleteUsersByPostnumber);
+router.patch("/postnumber", patchUserValidators, patchUserByPostnumber);
 
 export default router;

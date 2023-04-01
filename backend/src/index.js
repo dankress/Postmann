@@ -11,8 +11,8 @@ import swaggerUi from "swagger-ui-express";
 const app = express();
 const port = 4000;
 
+//Routes for the routers
 app.use(bodyParser.json());
-
 app.use("/shipments", router);
 app.use("/packagestations", router2);
 app.use("/users", router3);
@@ -27,5 +27,3 @@ mongoose.connect("mongodb://mongo:27017/backend").then(() => {
 app.listen(port, () => {
   console.log(`Server is running on port http://localhost:${port}`);
 });
-
-

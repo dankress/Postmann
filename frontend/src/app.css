@@ -8,7 +8,15 @@ body {
     margin-bottom: 1%;
     margin-top: 5%;
   }
-  
+
+  #list {
+    margin: 5% auto;
+    width: 50%;
+    text-align: center;
+    font-size: 15pt;
+    font-style: italic;
+  }
+
   #fetcher {
     background-color: red;
     color: beige;
@@ -22,7 +30,11 @@ body {
   }
   
   .data {
-    margin-top: 4%;
+    margin: 5% auto;
     text-align: center;
     color: red;
+  }
+
+  .separator {
+    color: black;
   }
