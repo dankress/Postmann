@@ -1,7 +1,7 @@
-FROM node:17-alpine
+FROM golang:1.16-alpine
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm install -g nodemon && npm install
-COPY src ./src
+COPY . .
+RUN go mod download
+RUN go build -o main .
 EXPOSE 4000
-ENTRYPOINT ["npm", "start"]
+CMD ["./main"]
